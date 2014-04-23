@@ -1,0 +1,130 @@
+Extract 7777.zip to: D:\\tmp2\7777.zip\7777.zip_files Successfully
+flash_processor process sanple <Sample.Sample instance at 0x025D5A80>
+add flash obj to  [<Flash_Object.Flash_Object instance at 0x02844350>]
+file_path: D:\open_xml2\7777.zip
+file_name:  7777.zip
+sample_dir:  D:\\tmp2\7777.zip
+swf_dir D:\\tmp2\7777.zip\SWF_files
+extract_file_dir:  D:\\tmp2\7777.zip\7777.zip_files
+file_list:  ['[Content_Types].xml', '_rels/.rels', 'word/_rels/document.xml.rels', 'word/document.xml', 'word/footnotes.xml', 'word/endnotes.xml', 'word/_rels/header1.xml.rels', 'word/header1.xml', 'word/theme/theme1.xml', 'word/media/image1.png', 'word/media/image2.png', 'word/settings.xml', 'word/styles.xml', 'word/webSettings.xml', 'word/activeX/_rels/activeX1.xml.rels', 'word/fontTable.xml', 'docProps/core.xml', 'word/numbering.xml', 'word/activeX/activeX1.bin', 'word/activeX/activeX1.xml', 'docProps/app.xml']
+file_type:  DOCX
+file_contain_activeX:  True
+file_contain_flash:  True
+file_contain_vba:  False
+extension_List:  ['png', 'bin', 'rels', 'xml']
+bin_file_list:  ['word/activeX/activeX1.bin']
+flash_obj_list:  [<Flash_Object.Flash_Object instance at 0x02844350>]
+Extract book1-.xlsx to: D:\\tmp2\book1-.xlsx\book1-.xlsx_files Successfully
+flash_processor process sanple <Sample.Sample instance at 0x025DDB70>
+add flash obj to  [<Flash_Object.Flash_Object instance at 0x02844AF8>]
+file_path: D:\open_xml2\book1-.xlsx
+file_name:  book1-.xlsx
+sample_dir:  D:\\tmp2\book1-.xlsx
+swf_dir D:\\tmp2\book1-.xlsx\SWF_files
+extract_file_dir:  D:\\tmp2\book1-.xlsx\book1-.xlsx_files
+file_list:  ['[Content_Types].xml', '_rels/.rels', 'xl/_rels/workbook.xml.rels', 'xl/workbook.xml', 'xl/theme/theme1.xml', 'xl/worksheets/sheet3.xml', 'xl/worksheets/sheet2.xml', 'xl/worksheets/_rels/sheet1.xml.rels', 'xl/drawings/_rels/vmlDrawing1.vml.rels', 'xl/worksheets/sheet1.xml', 'xl/media/image1.emf', 'xl/styles.xml', 'xl/drawings/vmlDrawing1.vml', 'xl/drawings/drawing1.xml', 'xl/activeX/activeX1.xml', 'xl/activeX/_rels/activeX1.xml.rels', 'xl/activeX/activeX1.bin', 'docProps/app.xml', 'docProps/core.xml', 'xl/printerSettings/printerSettings1.bin']
+file_type:  XLSX
+file_contain_activeX:  True
+file_contain_flash:  True
+file_contain_vba:  False
+extension_List:  ['bin', 'emf', 'rels', 'xml', 'vml']
+bin_file_list:  ['xl/activeX/activeX1.bin', 'xl/printerSettings/printerSettings1.bin']
+flash_obj_list:  [<Flash_Object.Flash_Object instance at 0x02844AF8>]
+Extract book2.xlsm to: D:\\tmp2\book2.xlsm\book2.xlsm_files Successfully
+No flash related xml file found
+flash_processor process sanple <Sample.Sample instance at 0x025D5FD0>
+D:\\tmp2\book2.xlsm\book2.xlsm_files\xl/vbaProject.bin
+file_path: D:\open_xml2\book2.xlsm
+file_name:  book2.xlsm
+sample_dir:  D:\\tmp2\book2.xlsm
+swf_dir D:\\tmp2\book2.xlsm\SWF_files
+extract_file_dir:  D:\\tmp2\book2.xlsm\book2.xlsm_files
+file_list:  ['[Content_Types].xml', '_rels/.rels', 'xl/_rels/workbook.xml.rels', 'xl/workbook.xml', 'xl/theme/theme1.xml', 'xl/worksheets/sheet2.xml', 'xl/worksheets/sheet3.xml', 'xl/worksheets/sheet1.xml', 'xl/vbaProject.bin', 'xl/styles.xml', 'docProps/app.xml', 'docProps/core.xml']
+file_type:  XLSX
+file_contain_activeX:  None
+file_contain_flash:  False
+file_contain_vba:  True
+extension_List:  ['bin', 'rels', 'xml']
+bin_file_list:  ['xl/vbaProject.bin']
+flash_obj_list:  None
+Extract Doc1.zip to: D:\\tmp2\Doc1.zip\Doc1.zip_files Successfully
+flash_processor process sanple <Sample.Sample instance at 0x02844E68>
+add flash obj to  [<Flash_Object.Flash_Object instance at 0x02857800>]
+file_path: D:\open_xml2\Doc1.zip
+file_name:  Doc1.zip
+sample_dir:  D:\\tmp2\Doc1.zip
+swf_dir D:\\tmp2\Doc1.zip\SWF_files
+extract_file_dir:  D:\\tmp2\Doc1.zip\Doc1.zip_files
+file_list:  ['[Content_Types].xml', '_rels/.rels', 'word/_rels/document.xml.rels', 'word/document.xml', 'word/footer3.xml', 'word/footer2.xml', 'word/footer1.xml', 'word/header2.xml', 'word/header1.xml', 'word/header3.xml', 'word/endnotes.xml', 'word/footnotes.xml', 'docProps/thumbnail.emf', 'word/media/image1.png', 'word/theme/theme1.xml', 'word/settings.xml', 'word/webSettings.xml', 'docProps/app.xml', 'word/activeX/_rels/activeX1.xml.rels', 'word/stylesWithEffects.xml', 'word/styles.xml', 'word/fontTable.xml', 'word/activeX/activeX1.bin', 'word/activeX/activeX1.xml', 'docProps/core.xml']
+file_type:  DOCX
+file_contain_activeX:  True
+file_contain_flash:  True
+file_contain_vba:  False
+extension_List:  ['png', 'bin', 'emf', 'rels', 'xml']
+bin_file_list:  ['word/activeX/activeX1.bin']
+flash_obj_list:  [<Flash_Object.Flash_Object instance at 0x02857800>]
+Extract flash2.pptx to: D:\\tmp2\flash2.pptx\flash2.pptx_files Successfully
+flash_processor process sanple <Sample.Sample instance at 0x0284DAA8>
+add flash obj to  [<Flash_Object.Flash_Object instance at 0x0284D530>]
+add flash obj to  [<Flash_Object.Flash_Object instance at 0x0284D530>, <Flash_Object.Flash_Object instance at 0x0284D300>]
+file_path: D:\open_xml2\flash2.pptx
+file_name:  flash2.pptx
+sample_dir:  D:\\tmp2\flash2.pptx
+swf_dir D:\\tmp2\flash2.pptx\SWF_files
+extract_file_dir:  D:\\tmp2\flash2.pptx\flash2.pptx_files
+file_list:  ['[Content_Types].xml', '_rels/.rels', 'ppt/slides/_rels/slide2.xml.rels', 'ppt/slides/_rels/slide1.xml.rels', 'ppt/_rels/presentation.xml.rels', 'ppt/presentation.xml', 'ppt/slides/slide2.xml', 'ppt/slides/slide1.xml', 'ppt/slideLayouts/_rels/slideLayout7.xml.rels', 'ppt/slideLayouts/_rels/slideLayout8.xml.rels', 'ppt/slideLayouts/_rels/slideLayout9.xml.rels', 'ppt/slideLayouts/_rels/slideLayout10.xml.rels', 'ppt/slideLayouts/_rels/slideLayout6.xml.rels', 'ppt/slideLayouts/_rels/slideLayout4.xml.rels', 'ppt/slideMasters/_rels/slideMaster1.xml.rels', 'ppt/slideLayouts/_rels/slideLayout1.xml.rels', 'ppt/slideMasters/slideMaster1.xml', 'ppt/slideLayouts/_rels/slideLayout2.xml.rels', 'ppt/slideLayouts/_rels/slideLayout3.xml.rels', 'ppt/slideLayouts/_rels/slideLayout5.xml.rels', 'ppt/slideLayouts/_rels/slideLayout11.xml.rels', 'ppt/slideLayouts/slideLayout11.xml', 'ppt/slideLayouts/slideLayout1.xml', 'ppt/slideLayouts/slideLayout2.xml', 'ppt/slideLayouts/slideLayout3.xml', 'ppt/slideLayouts/slideLayout4.xml', 'ppt/slideLayouts/slideLayout5.xml', 'ppt/slideLayouts/slideLayout10.xml', 'ppt/slideLayouts/slideLayout6.xml', 'ppt/slideLayouts/slideLayout9.xml', 'ppt/slideLayouts/slideLayout7.xml', 'ppt/slideLayouts/slideLayout8.xml', 'ppt/drawings/_rels/vmlDrawing1.vml.rels', 'ppt/drawings/_rels/vmlDrawing2.vml.rels', 'ppt/theme/theme1.xml', 'ppt/media/image4.png', 'ppt/drawings/vmlDrawing2.vml', 'ppt/media/image2.png', 'ppt/media/image1.png', 'docProps/thumbnail.jpeg', 'ppt/drawings/vmlDrawing1.vml', 'ppt/media/image3.png', 'ppt/tableStyles.xml', 'ppt/viewProps.xml', 'ppt/presProps.xml', 'ppt/activeX/activeX2.bin', 'ppt/activeX/_rels/activeX2.xml.rels', 'docProps/app.xml', 'ppt/activeX/_rels/activeX1.xml.rels', 'docProps/core.xml', 'ppt/tags/tag2.xml', 'ppt/activeX/activeX1.xml', 'ppt/activeX/activeX1.bin', 'ppt/tags/tag1.xml', 'ppt/activeX/activeX2.xml']
+file_type:  PPTX
+file_contain_activeX:  True
+file_contain_flash:  True
+file_contain_vba:  False
+extension_List:  ['png', 'bin', 'jpeg', 'rels', 'xml', 'vml']
+bin_file_list:  ['ppt/activeX/activeX2.bin', 'ppt/activeX/activeX1.bin']
+flash_obj_list:  [<Flash_Object.Flash_Object instance at 0x0284D530>, <Flash_Object.Flash_Object instance at 0x0284D300>]
+Extract flash_docx.docx to: D:\\tmp2\flash_docx.docx\flash_docx.docx_files Successfully
+flash_processor process sanple <Sample.Sample instance at 0x0284D710>
+file_path: D:\open_xml2\flash_docx.docx
+file_name:  flash_docx.docx
+sample_dir:  D:\\tmp2\flash_docx.docx
+swf_dir D:\\tmp2\flash_docx.docx\SWF_files
+extract_file_dir:  D:\\tmp2\flash_docx.docx\flash_docx.docx_files
+file_list:  ['[Content_Types].xml', '_rels/.rels', 'word/_rels/document.xml.rels', 'word/document.xml', 'word/footnotes.xml', 'word/endnotes.xml', 'word/theme/theme1.xml', 'word/media/image1.wmf', 'docProps/thumbnail.emf', 'word/settings.xml', 'word/webSettings.xml', 'word/activeX/_rels/activeX1.xml.rels', 'docProps/app.xml', 'word/stylesWithEffects.xml', 'word/styles.xml', 'word/fontTable.xml', 'word/activeX/activeX1.bin', 'word/activeX/activeX1.xml', 'docProps/core.xml']
+file_type:  DOCX
+file_contain_activeX:  True
+file_contain_flash:  False
+file_contain_vba:  False
+extension_List:  ['bin', 'wmf', 'emf', 'rels', 'xml']
+bin_file_list:  ['word/activeX/activeX1.bin']
+flash_obj_list:  None
+Extract NFL Schedule to: D:\\tmp2\NFL Schedule\NFL Schedule_files Successfully
+flash_processor process sanple <Sample.Sample instance at 0x02844440>
+add flash obj to  [<Flash_Object.Flash_Object instance at 0x0530A3A0>]
+file_path: D:\open_xml2\NFL Schedule
+file_name:  NFL Schedule
+sample_dir:  D:\\tmp2\NFL Schedule
+swf_dir D:\\tmp2\NFL Schedule\SWF_files
+extract_file_dir:  D:\\tmp2\NFL Schedule\NFL Schedule_files
+file_list:  ['[Content_Types].xml', '_rels/.rels', 'word/_rels/document.xml.rels', 'word/document.xml', 'word/footnotes.xml', 'word/endnotes.xml', 'word/media/image4.wmf', 'word/media/image3.wmf', 'word/theme/theme1.xml', 'word/media/image2.wmf', 'word/media/image1.png', 'word/settings.xml', 'word/activeX/_rels/activeX4.xml.rels', 'docProps/core.xml', 'docProps/app.xml', 'word/stylesWithEffects.xml', 'word/styles.xml', 'customXml/itemProps1.xml', 'word/activeX/_rels/activeX3.xml.rels', 'customXml/_rels/item1.xml.rels', 'word/activeX/_rels/activeX1.xml.rels', 'word/activeX/_rels/activeX2.xml.rels', 'customXml/item1.xml', 'word/activeX/activeX4.bin', 'word/webSettings.xml', 'word/activeX/activeX1.xml', 'word/activeX/activeX1.bin', 'word/activeX/activeX2.xml', 'word/activeX/activeX2.bin', 'word/activeX/activeX3.xml', 'word/activeX/activeX3.bin', 'word/activeX/activeX4.xml', 'word/fontTable.xml']
+file_type:  DOCX
+file_contain_activeX:  True
+file_contain_flash:  True
+file_contain_vba:  False
+extension_List:  ['png', 'bin', 'wmf', 'rels', 'xml']
+bin_file_list:  ['word/activeX/activeX4.bin', 'word/activeX/activeX1.bin', 'word/activeX/activeX2.bin', 'word/activeX/activeX3.bin']
+flash_obj_list:  [<Flash_Object.Flash_Object instance at 0x0530A3A0>]
+Extract VBA.zip to: D:\\tmp2\VBA.zip\VBA.zip_files Successfully
+flash_processor process sanple <Sample.Sample instance at 0x02861A58>
+D:\\tmp2\VBA.zip\VBA.zip_files\word/vbaProject.bin
+file_path: D:\open_xml2\VBA.zip
+file_name:  VBA.zip
+sample_dir:  D:\\tmp2\VBA.zip
+swf_dir D:\\tmp2\VBA.zip\SWF_files
+extract_file_dir:  D:\\tmp2\VBA.zip\VBA.zip_files
+file_list:  ['[Content_Types].xml', '_rels/.rels', 'word/_rels/document.xml.rels', 'word/document.xml', 'word/_rels/vbaProject.bin.rels', 'word/vbaProject.bin', 'word/theme/theme1.xml', 'word/settings.xml', 'word/vbaData.xml', 'customXml/_rels/item1.xml.rels', 'customXml/itemProps1.xml', 'customXml/item1.xml', 'docProps/app.xml', 'docProps/core.xml', 'word/styles.xml', 'word/fontTable.xml', 'word/webSettings.xml', 'word/stylesWithEffects.xml']
+file_type:  DOCX
+file_contain_activeX:  None
+file_contain_flash:  False
+file_contain_vba:  True
+extension_List:  ['bin', 'rels', 'xml']
+bin_file_list:  ['word/vbaProject.bin']
+flash_obj_list:  None
+VBA dir Module1 __SRP_0 __SRP_1 __SRP_2 __SRP_3 ThisWorkbook _VBA_PROJECT Worksheet___1 Worksheet___2 Worksheet___3PROJECTPROJECTwmVBA dir __SRP_0 __SRP_1 __SRP_2 __SRP_3 NewMacros ThisDocument _VBA_PROJECTPROJECTPROJECTwm
