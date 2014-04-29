@@ -12,8 +12,8 @@ class Sample:
 	vba_path=None              #path of vbaProject.bin
 	bin_file_list=None         #list of all bin file
 	flash_obj_list=None        #list of all flash swf files
-	# contentType_List=None
 	extension_List=None        #list of all extension type in this file
+	vba_dir=None               #VBA script directory
 
 	def __init__(self,path):
 		self.file_path=path
@@ -21,14 +21,6 @@ class Sample:
 		self.flash_obj_list=list()
 		self.extension_List=list()
 
-	# def _init_(self,file_path,file_name,files_dir,files_list,file_type):
-	# 	self.file_path=file_path
-	# 	self.file_name=file_name
-	# 	self.files_dir=files_dir
-	# 	self.files_list=files_list
-	# 	self.file_type=file_type
-
-	
 	def get_files_list(self):    
 		return self.file_list
 
@@ -50,3 +42,4 @@ class Sample:
 		print "extension_List: ",self.extension_List
 		print "bin_file_list: ",self.bin_file_list
 		print "flash_obj_list: ",self.flash_obj_list
+		print "vba_dir: ",self.vba_dir

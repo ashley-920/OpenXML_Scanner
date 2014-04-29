@@ -10,8 +10,9 @@ class Extractor:
             flash_processor.process(sample)
         if sample.file_contain_vba:
             vba_path=os.path.join(sample.extract_file_dir,sample.vba_path)
-            print vba_path
+            # print vba_path
             OMH.print_stream_info(vba_path, None, sample.sample_dir)
+            sample.vba_dir=os.path.join(sample.sample_dir,"Macros")
 
 
 

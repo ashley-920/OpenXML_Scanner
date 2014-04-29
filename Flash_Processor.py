@@ -7,8 +7,7 @@ class Flash_Processor:
 
 	swftool_dir= "\\Modules\\swftools\\swfdump.exe"
 
-	def process(self,sample):
-		print "flash_processor process sanple",sample
+	def process(self,sample):		
 		sample.swf_dir=os.path.join(sample.sample_dir,"SWF_files")
 		if not os.path.exists(sample.swf_dir):
 			os.makedirs(sample.swf_dir)

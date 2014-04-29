@@ -5,24 +5,50 @@
 			D:\\tmp2
 		</output_dir>
 	</directory>
+    <Objects>
+        <ActiveX>
+            <Scan>
+                <Module>Shellcode_scanner</Module>
+                <Module>URL_scanner</Module>
+            </Scan>
+        </ActiveX>
+        <VBA_Script>
+            <Scan>
+           		<Module>VBA_scanner</Module>
+            	<Module>URL_scanner</Module>
+            </Scan>
+        </VBA_Script>
+        <XML>
+            <Scan>
+            </Scan>
+        </XML>
+        <Action_Script>
+            <Scan>
+            </Scan>
+        </Action_Script>
+        <PE>
+            <Scan>
+            </Scan>
+        <PE>
+    </Objects>
 	<Scanners>
-		<Flash_scanner status="on">
-			<file>scan_flash.py</file>
+		<Flash_scanner>
+			<file status="on">scan_flash.py</file>
 		</Flash_scanner>
-		<Mal_struc_scanner status="on">
-			<file>struct_scan.py</file>
+		<Mal_struc_scanner>
+			<file status="on">struct_scan.py</file>
 		</Mal_struc_scanner>
-		<PE_scanner status="on">
-			<file>scan_pe.py</file>
+		<PE_scanner>
+			<file status="on">scan_pe.py</file>
 		</PE_scanner>
-		<Shellcode_scanner status="on">
-			<file>scan_shell.py</file>
+		<Shellcode_scanner>
+			<file status="on">scan_shell.py</file>
 		</Shellcode_scanner>
-		<VBA_scanner status="on">
-			<file>scan_vba.py</file>
+		<VBA_scanner>
+			<file status="on">scan_vba.py</file>
 		</VBA_scanner>
-		<URL_scanner status="on">
-			<file>scan_url.py</file>
+		<URL_scanner>
+			<file status="on">scan_url.py</file>
 		</URL_scanner>
 	</Scanners>
 </config>
