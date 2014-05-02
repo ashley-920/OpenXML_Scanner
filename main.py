@@ -17,14 +17,15 @@ def process_sample(file_path):
         dis=Dissector()
         parser=Parser()
         extrator=Extractor()
-        operator=Operator()
+        operator=Operator(config)
         sample=Sample(file_path)        
         dis.extract_file(sample,config.get_output_dir())             
         parser.parse(sample)
         extrator.extract(sample)
+        # config.print_info()
         operator.operate(sample,config)
-        config.print_info()
-        #sample.print_info()
+        
+        # sample.print_info()
     # all_types = Config.get_all_object_types()
     # # iterate through all object types
     # for object_type in all_types:
