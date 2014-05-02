@@ -17,24 +17,33 @@ class Config:
         config_data=f.read()
         f.close()
         soup = BeautifulSoup(config_data)
-           
+
         #get output_dir    
         self.output_dir=str(unicode(soup.find("output_dir").string))        
         self.output_dir=re.sub("\t", "", self.output_dir)
         self.output_dir=re.sub("\n", "", self.output_dir)
 
         #get all scanner module
+
         self.scanner_list=list()
-        scan_file_list=list()
-        scanner_tag=soup.scanners
-        for tag in scanner_tag.find_all("file"):
+        
+        scanner_tag=soup.find_all("scanner")
+        # print scanner_tag.findChildren()
+
+        for tag in scanner_tag:
+            print tag["name"]
+            scanner_list_item=list()
+            scanner_list_item.append(tag["name"])
+            # file_list=list()
             file_list=list()
-            scan_file_list.append(tag.parent.name)
-            if tag["status"] == "on":
-                file_list.append(tag.text)
-            scan_file_list.append(file_list)
-            self.scanner_list.append(scan_file_list)
-   
+            file_list_item=tag.find_all("file")
+            for file in file_list_item:
+                if file["status"] == "on":
+                    file_list.append(file.text)
+            scanner_list_item.append(file_list)
+            self.scanner_list.append(scanner_list_item)
+
+        
         #get object list
         self.objects_list=list()
         objects_tag=soup.objects
@@ -66,7 +75,17 @@ class Config:
     def get_output_dir(self):
         return self.output_dir
 
+    def print_info(self):
+        print "output_dir: ",self.output_dir
+        print "scanner_list:"
+        for scanner in self.scanner_list:
+            print "Scanner Module:",scanner[0]
+            for py in scanner[1]:
+                print py
+
+        print "objects_list",self.objects_list
 
 
-config=Config()
-config.load_config()
+
+# config=Config()
+# config.load_config()

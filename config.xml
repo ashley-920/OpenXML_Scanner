@@ -32,24 +32,25 @@
         <PE>
     </Objects>
 	<Scanners>
-		<Flash_scanner>
+		<Scanner name="Flash_scanner">
 			<file status="on">scan_flash.py</file>
-		</Flash_scanner>
-		<Mal_struc_scanner>
+		</Scanner>
+		<Scanner name="Mal_struc_scanner">
 			<file status="on">struct_scan.py</file>
-		</Mal_struc_scanner>
-		<PE_scanner>
+		</Scanner>
+		<Scanner name="PE_scanner">
 			<file status="on">scan_pe.py</file>
-		</PE_scanner>
-		<Shellcode_scanner>
+		</Scanner>
+		<Scanner name="Shellcode_scanner">
 			<file status="on">scan_shell.py</file>
-		</Shellcode_scanner>
-		<VBA_scanner>
+		</Scanner>
+		<Scanner name="VBA_scanner">
 			<file status="on">scan_vba.py</file>
-		</VBA_scanner>
-		<URL_scanner>
-			<file status="on">scan_url.py</file>
-		</URL_scanner>
+		</Scanner>
+		<Scanner name="URL_scanner">
+			<file status="on">string_scanner.py</file>
+            <file status="off">scan_url.py</file>
+		</Scanner>
 	</Scanners>
 </config>
 
