@@ -9,11 +9,14 @@ class Sample:
 	file_contain_activeX=None  #sample contain ActiveX or not
 	file_contain_flash=None    #sample contain flash object or not
 	file_contain_vba=None      #wether this file contain vba script
+	file_contain_pe=None       #sample contain pe or not
 	vba_path=None              #path of vbaProject.bin
 	bin_file_list=None         #list of all bin file
 	flash_obj_list=None        #list of all flash swf files
 	extension_List=None        #list of all extension type in this file
 	vba_dir=None               #VBA script directory
+	IOM=0					   #indicator of malicious
+	report=""                #scanning report
 
 	def __init__(self,path):
 		self.file_path=path

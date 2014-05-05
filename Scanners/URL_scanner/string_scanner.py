@@ -1,9 +1,5 @@
 import binascii, re, os, sys
 
-
-
-
-
 def scan(file_path):
 	f = open(file_path, 'rb')
 	data = f.read()

@@ -20,10 +20,13 @@
         </VBA_Script>
         <XML>
             <Scan>
+                <Module>URL_scanner</Module>
             </Scan>
         </XML>
         <Action_Script>
             <Scan>
+                <Module>URL_scanner</Module>
+                <Module>Flash_scanner</Module>
             </Scan>
         </Action_Script>
         <PE>
