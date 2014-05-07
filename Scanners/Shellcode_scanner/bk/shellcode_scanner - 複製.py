@@ -101,7 +101,7 @@ def omh_shellcode_scan(g_f_cnt):
     report=""
 
 
-    report=report+ "\r\n[*] Scanning now...\r\n\r\n"
+    report=report+ "[*] Scanning now...\n\n"
     for i in xrange(g_f_size):
         if ( libc.memcmp( byref(g_FS30Sig1), g_f_cnt[i:], 5 ) == 0 or
             libc.memcmp( byref(g_FS30Sig2), g_f_cnt[i:], 5 ) == 0 or
@@ -109,8 +109,7 @@ def omh_shellcode_scan(g_f_cnt):
             libc.memcmp( byref(g_FS30Sig4), g_f_cnt[i:], 5 ) == 0 or
             libc.memcmp( byref(g_FS30Sig5), g_f_cnt[i:], 5 ) == 0 or
             libc.memcmp( byref(g_FS30Sig6), g_f_cnt[i:], 5 ) == 0 ):
-            output=  "FS:[30h] (Method 1) signature found at offset: 0x%x\r\n" % i
-            report=report+str(output)
+            print "FS:[30h] (Method 1) signature found at offset: 0x%x\n" % i,
             if debug_flg == 1: print_opcodz( g_f_cnt[i:] )
             g_power += RATING_CODE
 
@@ -119,8 +118,7 @@ def omh_shellcode_scan(g_f_cnt):
             unpack( 'B', g_f_cnt[i+1] )[0] == 0x30 and
             unpack( 'B', g_f_cnt[i+3] )[0] == 0x64 and
             unpack( 'B', g_f_cnt[i+4] )[0] == 0x8B ):
-            output=  "FS:[30] (Method 2) signature found at offset: 0x%x\r\n" % i
-            report=report+str(output)
+            print "FS:[30] (Method 2) signature found at offset: 0x%x\n" % i,
             if debug_flg == 1: print_opcodz( g_f_cnt[i:] )
             g_power += RATING_CODE
 
@@ -129,8 +127,7 @@ def omh_shellcode_scan(g_f_cnt):
             unpack( 'B', g_f_cnt[i+3] )[0] == 0xB3 and
             unpack( 'B', g_f_cnt[i+4] )[0] == 0x64 and
             unpack( 'B', g_f_cnt[i+5] )[0] == 0x8B ):
-            output=  "FS:[30] (Method 3) signature found at offset: 0x%x\r\n" % i
-            report=report+str(output)
+            print "FS:[30] (Method 3) signature found at offset: 0x%x\n" % i,
             if debug_flg == 1: print_opcodz( g_f_cnt[i:] )
             g_power += RATING_CODE
 
@@ -139,15 +136,13 @@ def omh_shellcode_scan(g_f_cnt):
             unpack( 'B', g_f_cnt[i+2] )[0] == 0xC1 and
             unpack( 'B', g_f_cnt[i+4] )[0] == 0x0D and
             unpack( 'B', g_f_cnt[i+5] )[0] == 0x03 ):
-            output=  "API-Hashing signature found at offset: 0x%x\r\n" % i
-            report=report+str(output)
+            print "API-Hashing signature found at offset: 0x%x\n" % i,
             if debug_flg == 1: print_opcodz( g_f_cnt[i:] )
             g_power += RATING_CODE
     i = 0
     while ( i < g_f_size ):        
         if ( libc.memcmp( byref(g_NopSig), g_f_cnt[i:], 3 ) == 0 ):
-            output=  "NOP slides signature found at offset: 0x%x\r\n" % i
-            report=report+str(output)
+            print "NOP slides signature found at offset: 0x%x\n" % i,
             if debug_flg == 1: print_opcodz( g_f_cnt[i:] )
             while unpack('B', g_f_cnt[i])[0] == 0x90: i += 1
             g_power += RATING_OLENOP
@@ -156,14 +151,12 @@ def omh_shellcode_scan(g_f_cnt):
     for api in APIZ:
         for i in xrange(g_f_size):
             if libc.memcmp( c_char_p(api), g_f_cnt[i:], len(api) ) == 0:
-                output=  "API-Name %s string found at offset: 0x%x\r\n" % (api, i)
-                report=report+str(output)
+                print "API-Name %s string found at offset: 0x%x\n" % (api, i),
                 if debug_flg == 1: dump_data( "PE-File", g_f_cnt[i:], 0x100 )
                 g_power += RATING_STRS
     for i in xrange(8, g_f_size):
         if libc.memcmp( byref(g_aOfficeSig), g_f_cnt[i:], 8 ) == 0:
-            output="Embedded OLE signature found at offset: 0x%x\r\n" % i
-            report=report+str(output)
+            print "Embedded OLE signature found at offset: 0x%x\n" % i,
             if debug_flg == 1: dump_data( "PE-File", g_f_cnt[i:], 0x100 )
             g_power += RATING_OLENOP
 
@@ -173,8 +166,7 @@ def omh_shellcode_scan(g_f_cnt):
             unpack( 'B', g_f_cnt[i+2] )[0] == 0xEC and
             unpack( 'B', g_f_cnt[i+3] )[0] == 0x83 and
             unpack( 'B', g_f_cnt[i+4] )[0] == 0xC4 ):
-            output=  "Function prolog signature found at offset: 0x%x\r\n" % i
-            report=report+str(output)
+            print "Function prolog signature found at offset: 0x%x\n" % i,
             if debug_flg == 1: print_opcodz( g_f_cnt[i:] )
             g_power += RATING_CODE
     for i in xrange(g_f_size):
@@ -183,8 +175,7 @@ def omh_shellcode_scan(g_f_cnt):
             unpack( 'B', g_f_cnt[i+2] )[0] == 0xEC and
             unpack( 'B', g_f_cnt[i+3] )[0] == 0x81 and
             unpack( 'B', g_f_cnt[i+4] )[0] == 0xEC ):
-            output=  "Function prolog signature found at offset: 0x%x\r\n" % i
-            report=report+str(output)
+            print "Function prolog signature found at offset: 0x%x\n" % i,
             if debug_flg == 1: print_opcodz( g_f_cnt[i:] )
             g_power += RATING_CODE
 
@@ -193,8 +184,7 @@ def omh_shellcode_scan(g_f_cnt):
             unpack( 'B', g_f_cnt[i+1] )[0] == 0x75 and
             unpack( 'B', g_f_cnt[i+3] )[0] == 0xFF and
             unpack( 'B', g_f_cnt[i+4] )[0] == 0x55 ):
-            output=  "PUSH DWORD[]/CALL[] signature found at offset: 0x%x\r\n" % i
-            report=report+str(output)
+            print "PUSH DWORD[]/CALL[] signature found at offset: 0x%x\n" % i,
             if debug_flg == 1: print_opcodz( g_f_cnt[i:] )
             g_power += RATING_CODE
 
@@ -202,7 +192,7 @@ def omh_shellcode_scan(g_f_cnt):
         if ( unpack( 'B', g_f_cnt[i]   )[0] == 0xAC and
             unpack( 'B', g_f_cnt[i+1] )[0] == 0x34 and
             unpack( 'B', g_f_cnt[i+3] )[0] == 0xAA ):
-            report=report+  "LODSB/STOSB XOR decryption signature found at offset: 0x%x\r\n" % i,
+            print "LODSB/STOSB XOR decryption signature found at offset: 0x%x\n" % i,
             if debug_flg == 1: print_opcodz( g_f_cnt[i:] )
             g_power += RATING_CODE
 
@@ -210,7 +200,7 @@ def omh_shellcode_scan(g_f_cnt):
         if ( unpack( 'B', g_f_cnt[i]   )[0] == 0xAC and
             unpack( 'B', g_f_cnt[i+1] )[0] == 0x04 and
             unpack( 'B', g_f_cnt[i+3] )[0] == 0xAA ):
-            report=report+  "LODSB/STOSB ADD decryption signature found at offset: 0x%x\r\n" % i,
+            print "LODSB/STOSB ADD decryption signature found at offset: 0x%x\n" % i,
             if debug_flg == 1: print_opcodz( g_f_cnt[i:] )
             g_power += RATING_CODE
 
@@ -218,7 +208,7 @@ def omh_shellcode_scan(g_f_cnt):
         if ( unpack( 'B', g_f_cnt[i]   )[0] == 0xAC and
             unpack( 'B', g_f_cnt[i+1] )[0] == 0x2C and
             unpack( 'B', g_f_cnt[i+3] )[0] == 0xAA ):
-            report=report+  "LODSB/STOSB SUB decryption signature found at offset: 0x%x\r\n" % i,
+            print "LODSB/STOSB SUB decryption signature found at offset: 0x%x\n" % i,
             if debug_flg == 1: print_opcodz( g_f_cnt[i:] )
             g_power += RATING_CODE
 
@@ -227,7 +217,7 @@ def omh_shellcode_scan(g_f_cnt):
             unpack( 'B', g_f_cnt[i+1] )[0] == 0xD0 and
             unpack( 'B', g_f_cnt[i+2] )[0] == 0xC0 and
             unpack( 'B', g_f_cnt[i+3] )[0] == 0xAA ):
-            report=report+  "LODSB/STOSB ROL decryption signature found at offset: 0x%x\r\n" % i,
+            print "LODSB/STOSB ROL decryption signature found at offset: 0x%x\n" % i,
             if debug_flg == 1: print_opcodz( g_f_cnt[i:] )
             g_power += RATING_CODE
 
@@ -236,7 +226,7 @@ def omh_shellcode_scan(g_f_cnt):
             unpack( 'B', g_f_cnt[i+1] )[0] == 0xD0 and
             unpack( 'B', g_f_cnt[i+2] )[0] == 0xC8 and
             unpack( 'B', g_f_cnt[i+3] )[0] == 0xAA ):
-            report=report+  "LODSB/STOSB ROR decryption signature found at offset: 0x%x\r\n" % i,
+            print "LODSB/STOSB ROR decryption signature found at offset: 0x%x\n" % i,
             if debug_flg == 1: print_opcodz( g_f_cnt[i:] )
             g_power += RATING_CODE
 
@@ -245,7 +235,7 @@ def omh_shellcode_scan(g_f_cnt):
             unpack( 'B', g_f_cnt[i+1] )[0] == 0xC0 and
             unpack( 'B', g_f_cnt[i+2] )[0] == 0xC0 and
             unpack( 'B', g_f_cnt[i+4] )[0] == 0xAA ):
-            report=report+  "LODSB/STOSB ROL decryption signature found at offset: 0x%x\r\n" % i,
+            print "LODSB/STOSB ROL decryption signature found at offset: 0x%x\n" % i,
             if debug_flg == 1: print_opcodz( g_f_cnt[i:] )
             g_power += RATING_CODE
 
@@ -254,7 +244,7 @@ def omh_shellcode_scan(g_f_cnt):
             unpack( 'B', g_f_cnt[i+1] )[0] == 0xC0 and
             unpack( 'B', g_f_cnt[i+2] )[0] == 0xC8 and
             unpack( 'B', g_f_cnt[i+4] )[0] == 0xAA ):
-            report=report+  "LODSB/STOSB ROR decryption signature found at offset: 0x%x\r\n" % i,
+            print "LODSB/STOSB ROR decryption signature found at offset: 0x%x\n" % i,
             if debug_flg == 1: print_opcodz( g_f_cnt[i:] )
             g_power += RATING_CODE
 
@@ -265,7 +255,7 @@ def omh_shellcode_scan(g_f_cnt):
             unpack( 'B', g_f_cnt[i+3] )[0] == 0x35 and
             unpack( 'B', g_f_cnt[i+6] )[0] == 0x66 and
             unpack( 'B', g_f_cnt[i+7] )[0] == 0xAB ):
-            report=report+  "LODSW/STOSW XOR decryption signature found at offset: 0x%x\r\n" % i,
+            print "LODSW/STOSW XOR decryption signature found at offset: 0x%x\n" % i,
             if debug_flg == 1: print_opcodz( g_f_cnt[i:] )
             g_power += RATING_CODE
 
@@ -276,7 +266,7 @@ def omh_shellcode_scan(g_f_cnt):
             unpack( 'B', g_f_cnt[i+3] )[0] == 0x05 and
             unpack( 'B', g_f_cnt[i+6] )[0] == 0x66 and
             unpack( 'B', g_f_cnt[i+7] )[0] == 0xAB ):
-            report=report+  "LODSW/STOSW ADD decryption signature found at offset: 0x%x\r\n" % i,
+            print "LODSW/STOSW ADD decryption signature found at offset: 0x%x\n" % i,
             if debug_flg == 1: print_opcodz( g_f_cnt[i:] )
             g_power += RATING_CODE
 
@@ -287,14 +277,14 @@ def omh_shellcode_scan(g_f_cnt):
             unpack( 'B', g_f_cnt[i+3] )[0] == 0x2D and
             unpack( 'B', g_f_cnt[i+6] )[0] == 0x66 and
             unpack( 'B', g_f_cnt[i+7] )[0] == 0xAB ):
-            report=report+  "LODSW/STOSW SUB decryption signature found at offset: 0x%x\r\n" % i,
+            print "LODSW/STOSW SUB decryption signature found at offset: 0x%x\n" % i,
             if debug_flg == 1: print_opcodz( g_f_cnt[i:] )
             g_power += RATING_CODE
     for i in xrange(g_f_size):
             if ( unpack( 'B', g_f_cnt[i]   )[0] == 0xAD and
                  unpack( 'B', g_f_cnt[i+1] )[0] == 0x35 and
                  unpack( 'B', g_f_cnt[i+6] )[0] == 0xAB ):
-                report=report+  "LODSD/STOSD XOR decryption signature found at offset: 0x%x\r\n" % i,
+                print "LODSD/STOSD XOR decryption signature found at offset: 0x%x\n" % i,
                 if debug_flg == 1: print_opcodz( g_f_cnt[i:] )
                 g_power += RATING_CODE
 
@@ -302,7 +292,7 @@ def omh_shellcode_scan(g_f_cnt):
         if ( unpack( 'B', g_f_cnt[i]   )[0] == 0xAD and
             unpack( 'B', g_f_cnt[i+1] )[0] == 0x05 and
             unpack( 'B', g_f_cnt[i+6] )[0] == 0xAB ):
-            report=report+  "LODSD/STOSD ADD decryption signature found at offset: 0x%x\r\n" % i,
+            print "LODSD/STOSD ADD decryption signature found at offset: 0x%x\n" % i,
             if debug_flg == 1: print_opcodz( g_f_cnt[i:] )
             g_power += RATING_CODE
 
@@ -310,13 +300,13 @@ def omh_shellcode_scan(g_f_cnt):
         if ( unpack( 'B', g_f_cnt[i]   )[0] == 0xAD and
             unpack( 'B', g_f_cnt[i+1] )[0] == 0x2D and
             unpack( 'B', g_f_cnt[i+6] )[0] == 0xAB ):
-            report=report+  "LODSD/STOSD SUB decryption signature found at offset: 0x%x\r\n" % i,
+            print "LODSD/STOSD SUB decryption signature found at offset: 0x%x\n" % i,
             if debug_flg == 1: print_opcodz( g_f_cnt[i:] )
             g_power += RATING_CODE
 
     for i in xrange(g_f_size):
         if libc.memcmp( byref(g_FldzSig), g_f_cnt[i:], 6 ) == 0:
-            report=report+  "FLDZ/FSTENV [esp-12] signature found at offset: 0x%x\r\n" % i,
+            print "FLDZ/FSTENV [esp-12] signature found at offset: 0x%x\n" % i,
             if debug_flg == 1: print_opcodz( g_f_cnt[i:] )
             g_power += RATING_CODE
 
@@ -328,8 +318,7 @@ def omh_shellcode_scan(g_f_cnt):
                 libc.memcmp( byref(g_CallPopSig5), g_f_cnt[i:], 6 ) == 0 or
                 libc.memcmp( byref(g_CallPopSig6), g_f_cnt[i:], 6 ) == 0 or
                 libc.memcmp( byref(g_CallPopSig7), g_f_cnt[i:], 6 ) == 0 ):
-            output=  "CALL next/POP signature found at offset: 0x%x\r\n" % i,
-            report=report+str(output)
+            print "CALL next/POP signature found at offset: 0x%x\n" % i,
             if debug_flg == 1: print_opcodz( g_f_cnt[i:] )
             g_power += RATING_CODE
 
@@ -356,7 +345,7 @@ def omh_shellcode_scan(g_f_cnt):
                            unpack( 'B', g_f_cnt[jmp_off+call_va+5] )[0] == 0x5B or
                            unpack( 'B', g_f_cnt[jmp_off+call_va+5] )[0] == 0x5E or
                            unpack( 'B', g_f_cnt[jmp_off+call_va+5] )[0] == 0x5F ):
-                            report=report+  "JMP [0xEB]/CALL/POP signature found at offset: 0x%x\r\n" % i,
+                            print "JMP [0xEB]/CALL/POP signature found at offset: 0x%x\n" % i,
                             if debug_flg == 1: print_opcodz( g_f_cnt[i:] )
                             g_power += RATING_CODE
 
@@ -383,7 +372,7 @@ def omh_shellcode_scan(g_f_cnt):
                            unpack( 'B', g_f_cnt[jmp_off+call_va+5] )[0] == 0x5B or
                            unpack( 'B', g_f_cnt[jmp_off+call_va+5] )[0] == 0x5E or
                            unpack( 'B', g_f_cnt[jmp_off+call_va+5] )[0] == 0x5F ):
-                            report=report+  "JMP [0xE9]/CALL/POP signature found at offset: 0x%x\r\n" % i,
+                            print "JMP [0xE9]/CALL/POP signature found at offset: 0x%x\n" % i,
                             if debug_flg == 1: print_opcodz( g_f_cnt[i:] )
                             g_power += RATING_CODE
 
@@ -395,24 +384,21 @@ def omh_shellcode_scan(g_f_cnt):
             pe_off += unpack( 'B', g_f_cnt[i+0x3E] )[0] << 16
             pe_off += unpack( 'B', g_f_cnt[i+0x3F] )[0] << 24
             if ( libc.memcmp( c_char_p("PE"), g_f_cnt[i+pe_off:], 2 ) == 0):
-                output=  "unencrypted MZ/PE signature found at offset: 0x%x\r\n" % i
-                report=report+str(output)
+                print "unencrypted MZ/PE signature found at offset: 0x%x\n" % i,
                 if debug_flg == 1: dump_data( "PE-File", g_f_cnt[i:], 0x100 )
                 g_power += RATING_EXEC
 
-    report=report+  "\r\n\r\nAnalysis finished!\r\n\r\n",
+    print "\n\nAnalysis finished!\n\n",
 
     if g_power:
         k32.SetConsoleTextAttribute( h, 0x0E ) # FOREGROUND_GREEN or FOREGROUND_RED or FOREGROUND_INTENSITY
-        report= str(report)+  "---------------------------------------------" 
+        libc.printf( "---------------------------------------------" )
         i = 0
         while i < len(g_f_name):
             libc.printf("-")
             i += 1
-        output= "\r\n%s seems to be malicious! Malicious Index = %02d\r\n" % ( g_f_name, g_power )
-        report=report+str(output)
-        report=report+ "---------------------------------------------" 
-        iom=g_power
+        libc.printf( "\n%s seems to be malicious! Malicious Index = %02d\n", g_f_name, g_power )
+        libc.printf( "---------------------------------------------" )
         i = 0
         while i < len(g_f_name):
             libc.printf("-")
@@ -420,14 +406,11 @@ def omh_shellcode_scan(g_f_cnt):
         k32.SetConsoleTextAttribute( h, 0x0F ) # FOREGROUND_BLUE or FOREGROUND_GREEN or FOREGROUND_RED or FOREGROUND_INTENSITY
     else:
         k32.SetConsoleTextAttribute( h, 0x07 ) # FOREGROUND_BLUE or FOREGROUND_GREEN or FOREGROUND_RED
-        report=report+  "---------------------------------------------------------------------\r\n",
-        report=report+  "             No malicious traces found in this file!\r\n",
-        report=report+  "Assure that this file is being scanned with the \"info\" parameter too.\r\n",
-        report=report+  "---------------------------------------------------------------------\r\n",
+        print "---------------------------------------------------------------------\n",
+        print "             No malicious traces found in this file!\n",
+        print "Assure that this file is being scanned with the \"info\" parameter too.\n",
+        print "---------------------------------------------------------------------\n",
         k32.SetConsoleTextAttribute( h, 0x0F ) # FOREGROUND_BLUE or FOREGROUND_GREEN or FOREGROUND_RED or FOREGROUND_INTENSITY
-
-    ot.set_item(iom,report)
-    return ot
 
 
 def shellcode_scanner(mappedOle):
@@ -585,4 +568,4 @@ if __name__ == '__main__':
     if len(sys.argv) >= 2:
         scan(sys.argv[1])
     else:
-        print "Syntex : \r\n\t%s path" % sys.argv[0]
+        print "Syntex : \n\t%s path" % sys.argv[0]

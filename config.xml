@@ -24,8 +24,7 @@
             </Scan>
         </XML>
         <Action_Script>
-            <Scan>
-                <Module>URL_scanner</Module>
+            <Scan>                
                 <Module>Flash_scanner</Module>
             </Scan>
         </Action_Script>
@@ -45,7 +44,9 @@
 			<file status="on">scan_pe.py</file>
 		</Scanner>
 		<Scanner name="Shellcode_scanner">
-			<file status="on">scan_shell.py</file>
+			<file status="off">scan_shell.py</file>
+            <file status="off">shellcode_scanner.py</file>
+            <file status="on">shellcode_scanner2.py</file>
 		</Scanner>
 		<Scanner name="VBA_scanner">
 			<file status="on">scan_vba.py</file>
