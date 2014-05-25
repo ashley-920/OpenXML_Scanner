@@ -1,8 +1,10 @@
 import os, sys, re
 from struct import unpack
 from ctypes import *
-
+import Parser
+from Output_Item import Output_Item
 import binascii
+
 
 # from ctypes import byref
 # from ctypes import c_byte
@@ -65,7 +67,7 @@ g_f_name      = ''
 
 
 
-def scan_shellcode(file_path):
+def scan(file_path):
     global g_f_name
     g_f_name = os.path.basename(file_path)
     try:
@@ -83,16 +85,18 @@ def scan_shellcode(file_path):
         print("I/O Error: {0}".format(err))
     except:
         print("Generic Error Happened\n")
-    omh_shellcode_scan(mappedfile)
+    return omh_shellcode_scan(mappedfile,file_path)
 
 
 
-def omh_shellcode_scan(g_f_cnt):
+def omh_shellcode_scan(g_f_cnt,file_path):
     global g_power
     global g_f_name
+
     mode_flg  = 0 # <scan | info> mode
     debug_flg = 0
     brute_flg = 0
+    g_power= 0
 
     libc = cdll.msvcrt
     k32  = windll.kernel32
@@ -101,8 +105,9 @@ def omh_shellcode_scan(g_f_cnt):
 
     output=""
 
-    print "[*] Scanning now...\n\n",
-    output=output+"\n[*] Scanning now...\n\n"
+    print "[*] Scanning result...\n\n",
+    output=output+"\n[*] File:"+file_path+"\n"
+    output=output+"[*] Scanning result...\n"
     for i in xrange(g_f_size):
         if ( libc.memcmp( byref(g_FS30Sig1), g_f_cnt[i:], 5 ) == 0 or
             libc.memcmp( byref(g_FS30Sig2), g_f_cnt[i:], 5 ) == 0 or
@@ -392,10 +397,10 @@ def omh_shellcode_scan(g_f_cnt):
 
         
     print "\n\nAnalysis finished!\n\n",
-    output=output+"\n\nAnalysis finished!\n\n"
+    # output=output+"\n\nAnalysis finished!\n\n"
 
     if g_power:
-        k32.SetConsoleTextAttribute( h, 0x0E ) # FOREGROUND_GREEN or FOREGROUND_RED or FOREGROUND_INTENSITY
+        # k32.SetConsoleTextAttribute( h, 0x0E ) # FOREGROUND_GREEN or FOREGROUND_RED or FOREGROUND_INTENSITY
         libc.printf( "---------------------------------------------" )
         output=output+"---------------------------------------------"
         i = 0
@@ -411,9 +416,9 @@ def omh_shellcode_scan(g_f_cnt):
             libc.printf("-")
             output=output+"-"
             i += 1
-        k32.SetConsoleTextAttribute( h, 0x0F ) # FOREGROUND_BLUE or FOREGROUND_GREEN or FOREGROUND_RED or FOREGROUND_INTENSITY
+        # k32.SetConsoleTextAttribute( h, 0x0F ) # FOREGROUND_BLUE or FOREGROUND_GREEN or FOREGROUND_RED or FOREGROUND_INTENSITY
     else:
-        k32.SetConsoleTextAttribute( h, 0x07 ) # FOREGROUND_BLUE or FOREGROUND_GREEN or FOREGROUND_RED
+        # k32.SetConsoleTextAttribute( h, 0x07 ) # FOREGROUND_BLUE or FOREGROUND_GREEN or FOREGROUND_RED
         print "---------------------------------------------------------------------\n",
         print "             No malicious traces found in this file!\n",
         print "Assure that this file is being scanned with the \"info\" parameter too.\n",
@@ -422,9 +427,11 @@ def omh_shellcode_scan(g_f_cnt):
         output=output+"             No malicious traces found in this file!\n"
         output=output+"Assure that this file is being scanned with the \"info\" parameter too.\n"
         output=output+"---------------------------------------------------------------------\n"
-        k32.SetConsoleTextAttribute( h, 0x0F ) # FOREGROUND_BLUE or FOREGROUND_GREEN or FOREGROUND_RED or FOREGROUND_INTENSITY
-
-    print output
+        # k32.SetConsoleTextAttribute( h, 0x0F ) # FOREGROUND_BLUE or FOREGROUND_GREEN or FOREGROUND_RED or FOREGROUND_INTENSITY
+    oi=Output_Item()
+    oi.set_item(g_power,output)   
+    return oi
+    # print output
 
 def shellcode_scanner(mappedOle):
 
@@ -581,6 +588,6 @@ def shellcode_scanner(mappedOle):
 
 if __name__ == '__main__':
     if len(sys.argv) >= 2:
-        scan_shellcode(sys.argv[1])
+        scan(sys.argv[1])
     else:
         print "Syntex : \n\t%s path" % sys.argv[0]
