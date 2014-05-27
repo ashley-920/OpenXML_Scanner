@@ -9,7 +9,7 @@
         <ActiveX>
             <Scan>
                 <Module>Shellcode_scanner</Module>
-                <Module>URL_scanner</Module>
+                <Module>URL_scanner</Module>                
             </Scan>
         </ActiveX>
         <VBA_Script>
@@ -41,7 +41,7 @@
 			<file status="on">struct_scan.py</file>
 		</Scanner>
 		<Scanner name="PE_scanner">
-			<file status="on">scan_pe.py</file>
+			<file status="off">pe_carve.py</file>
 		</Scanner>
 		<Scanner name="Shellcode_scanner">
 			<file status="off">scan_shell.py</file>
@@ -53,7 +53,7 @@
 		</Scanner>
 		<Scanner name="URL_scanner">
 			<file status="off">string_scanner.py</file>
-            <file status="off">scan_url.py</file>
+            <file status="on">scan_url.py</file>
 		</Scanner>
 	</Scanners>
 </config>

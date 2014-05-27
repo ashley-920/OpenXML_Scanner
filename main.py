@@ -4,6 +4,7 @@ from Parser import Parser
 from Extractor import Extractor
 from Operator import Operator
 from Config import Config
+from Report_Generator import Report_Generator
 import os,sys, zipfile
 
 
@@ -18,12 +19,15 @@ def process_sample(file_path):
         parser=Parser()
         extrator=Extractor()
         operator=Operator(config)
+        r_generator=Report_Generator()
         sample=Sample(file_path)        
         dis.extract_file(sample,config.get_output_dir())             
         parser.parse(sample)
         extrator.extract(sample)
-        # config.print_info()
+        # config.print_info()      
         operator.operate(sample,config)
+        r_generator.write_report(sample)
+
         
         # sample.print_info()
     # all_types = Config.get_all_object_types()
