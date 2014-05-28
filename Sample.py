@@ -1,6 +1,7 @@
 class Sample:
 	file_path=None             #input file path
 	file_name=None             #file base name
+	file_md5=None
 	extract_file_dir=None      #extract file dir path
 	sample_dir=None            #sample's folder
 	file_list=None             #extract files list
@@ -14,11 +15,10 @@ class Sample:
 	bin_file_list=None         #list of all bin file
 	flash_obj_list=None        #list of all flash swf files
 	pe_file_list=None		   #list of found pe file
-	extension_List=None        #list of all extension type in this file
-	
+	extension_List=None        #list of all extension type in this file	
 	vba_dir=None               #VBA script directory
 	IOM=0					   #indicator of malicious
-	report=""                #scanning report
+	report=""                  #scanning report
 
 	def __init__(self,path):
 		self.file_path=path

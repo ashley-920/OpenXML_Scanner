@@ -5,6 +5,8 @@ from bs4 import BeautifulSoup
 import re
 import zipfile
 import sys
+import hashlib
+from Utils import Utils
 
 class Dissector:
 
@@ -23,8 +25,10 @@ class Dissector:
 	# 	return self.output_dir
 
 	def extract_file(self,sample,output_dir):		
-	    if output_dir==None:
-	    	self.load_output_dir()
+	    # if output_dir==None:
+	    # 	self.load_output_dir()
+	    utils=Utils()
+	    sample.file_md5=utils.md5_for_file(sample.file_path)
 	    sample.file_name=os.path.basename(sample.file_path)	    
 	    sample.sample_dir=os.path.join(output_dir,sample.file_name)
 	    # print self.extract_file_dir
@@ -40,6 +44,7 @@ class Dissector:
 
 	# def get_output_dir(self):
 	# 	return output_dir
+	
 
 
 if __name__ == '__main__':  # pragma: no cover

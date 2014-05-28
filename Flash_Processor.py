@@ -76,6 +76,7 @@ class Flash_Processor:
 		return swf_list
 
 	def write_to_swf(self,swf,file_path):
+		file_path=file_path+".swf"
 		f = open(file_path, 'wb')
 		f.write(swf)
 		f.close()

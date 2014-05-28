@@ -8,8 +8,7 @@
     <Objects>
         <ActiveX>
             <Scan>
-                <Module>Shellcode_scanner</Module>
-                <Module>URL_scanner</Module>                
+                <Module>Shellcode_scanner</Module>                                
             </Scan>
         </ActiveX>
         <VBA_Script>

@@ -1,8 +1,9 @@
 from Config import Config
 from Flash_Object import Flash_Object
+from Utils import Utils
 import importlib,os
 import Output_Item
-import hashlib
+
 
 
 
@@ -19,6 +20,7 @@ class Operator:
 
 
     def operate(self,sample, config):
+        utils=Utils()
         import_file_dir="Scanners"
         if self.objects_dict != None and self.scanners_dict != None:
 
@@ -40,7 +42,7 @@ class Operator:
                         for bin in sample.bin_file_list:
                             obs_bin_path=os.path.join(sample.extract_file_dir,bin)
                             sample.report+="File: "+obs_bin_path+"\n"
-                            md5=self.md5_for_file(obs_bin_path)
+                            md5=utils.md5_for_file(obs_bin_path)
                             sample.report+="MD5: "+md5+"\n"
                             if md5 not in md5_list:
                                 md5_list.append(md5)
@@ -128,15 +130,7 @@ class Operator:
     def scan_file(self,module,file_path):
         return module.scan(file_path)
 
-    def md5_for_file(self,file, block_size=2**20):
-        f=open(file,"rb")
-        md5 = hashlib.md5()
-        while True:
-            data = f.read(block_size)
-            if not data:
-                break
-            md5.update(data)
-        return md5.hexdigest() 
+
 
     
 

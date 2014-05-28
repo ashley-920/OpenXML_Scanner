@@ -6,6 +6,7 @@ class Report_Generator:
         summary="\n################### Report Summary ###################\n"
         summary+="Sample File Path:"+sample.file_path+"\n"
         summary+="Sample File Name:"+sample.file_name+"\n"
+        summary+="Sample File MD5: "+sample.file_md5+"\n"
         summary+="Sample Directory:"+sample.sample_dir+"\n"
         summary+="Sample Extract File Directory:"+sample.extract_file_dir+"\n"
         summary+="Sample File Type:"+sample.file_type+"\n"
