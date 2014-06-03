@@ -22,12 +22,13 @@ class Operator:
     def operate(self,sample, config):
         utils=Utils()
         import_file_dir="Scanners"
+        md5_list=list()
         if self.objects_dict != None and self.scanners_dict != None:
 
             # deal with activeX obj
             sample.report+="\n\n[Binary File Info]\n\n"         
             if sample.file_contain_activeX:
-                md5_list=list()
+                
                 # print "Contain activeX"
                 scanners=self.objects_dict.get("activex")
                 for scanner in scanners:
@@ -40,15 +41,15 @@ class Operator:
                         # print "import "+import_path
                         module=self.import_files(import_path)
                         for bin in sample.bin_file_list:
-                            obs_bin_path=os.path.join(sample.extract_file_dir,bin)
-                            sample.report+="File: "+obs_bin_path+"\n"
-                            md5=utils.md5_for_file(obs_bin_path)
-                            sample.report+="MD5: "+md5+"\n"
-                            if md5 not in md5_list:
-                                md5_list.append(md5)
+                            obs_bin_path=os.path.join(sample.extract_file_dir,bin[0])
+                            sample.report+="File: "+obs_bin_path+"\n"                            
+                            sample.report+="MD5: "+bin[1]+"\n"
+                            if bin[1] not in md5_list:
+                                md5_list.append(bin[1])
                                 rlt=self.scan_file(module, obs_bin_path)
-                                sample.IOM+=rlt.get_IOM()
-                                sample.report=sample.report+rlt.get_report()
+                                if not rlt == None:
+                                    sample.IOM+=rlt.get_IOM()
+                                    sample.report=sample.report+rlt.get_report()
 
                             
                             
@@ -69,8 +70,9 @@ class Operator:
                         for flash_obj in sample.flash_obj_list:
                             print flash_obj.as_file_path                            
                             rlt=self.scan_file(module, flash_obj.as_file_path)
-                            sample.IOM+=rlt.get_IOM()
-                            sample.report=sample.report+rlt.get_report()
+                            if not rlt == None:
+                                sample.IOM+=rlt.get_IOM()
+                                sample.report=sample.report+rlt.get_report()
 
             #deal with vba script
             sample.report+="\n\n[VBA File Info]\n\n"
@@ -88,8 +90,9 @@ class Operator:
                         for vba_file in os.listdir(sample.vba_dir):
                             vba_file_path=os.path.join(sample.vba_dir,vba_file)                         
                             rlt=self.scan_file(module, vba_file_path)
-                            sample.IOM+=rlt.get_IOM()
-                            sample.report=sample.report+rlt.get_report()
+                            if not rlt == None:
+                                sample.IOM+=rlt.get_IOM()
+                                sample.report=sample.report+rlt.get_report()
                             
 
             #deal with xml file
@@ -108,8 +111,9 @@ class Operator:
                             if f.endswith("xml"):
                                 xml_file_path=os.path.join(sample.extract_file_dir,f)
                                 rlt=self.scan_file(module, xml_file_path)
-                                sample.IOM+=rlt.get_IOM()
-                                sample.report=sample.report+rlt.get_report()
+                                if not rlt == None:
+                                    sample.IOM+=rlt.get_IOM()
+                                    sample.report=sample.report+rlt.get_report()
 
             #deal with pe file
             sample.report+="\n\n[PE File Info]\n\n"
@@ -118,9 +122,9 @@ class Operator:
                 print sample.pe_file_list
                 sample.IOM+=100
 
-            # self.write_report(sample)
-            print "IOM of This Sample:",sample.IOM
-            print "Report of This Sample:",sample.report
+        print "IOM of This Sample:",sample.IOM
+        print "Report of This Sample:",sample.report
+        
 
 
     def import_files(self,file_name):

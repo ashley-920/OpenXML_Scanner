@@ -186,6 +186,7 @@ def print_stream_info( f, stg ,des_dir):
     - `f`:
     - `stg`:
     """
+    print "print stream info"
     if stg is None:
         
         ost = StgOpenStorage( f, None, 0x10, None, 0 )
@@ -211,7 +212,7 @@ def print_stream_info( f, stg ,des_dir):
 #                for c in s_info[0][0].encode( 'ascii', 'ignore' ):
                     if ord(c) > 122 or ord(c) <= 32: continue
                     s_name += c
-                    libc.printf( c )
+                    # libc.printf( c )
 
                 if s_info[0][1] - 1 > 3:
                     print "   [TYPE: Unknown]\n",
@@ -253,6 +254,7 @@ def print_stream_info( f, stg ,des_dir):
                         if macro == 1:
                             global g_macro_dir
                             g_macro_dir = os.path.abspath( "%s\\%sMacros" % (des_dir, g_f_name) )
+                            print "========================="+g_macro_dir
                             if not os.path.isdir( g_macro_dir ):
                                 os.mkdir( g_macro_dir )
                             save_decompressed_macro( s_name, data, i )  # FIXME

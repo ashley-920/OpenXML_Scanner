@@ -12,8 +12,8 @@ class Flash_Processor:
 		if not os.path.exists(sample.swf_dir):
 			os.makedirs(sample.swf_dir)
 		# print sample.swf_dir
-		for bin in sample.bin_file_list:			
-			bin_path=os.path.join(sample.extract_file_dir,bin)
+		for bin in sample.bin_file_list:					
+			bin_path=os.path.join(sample.extract_file_dir,bin[0])
 			swf_list=self.extract_swf(bin_path)			
 			for swf in swf_list:
 				if not sample.file_contain_flash: 
@@ -58,20 +58,22 @@ class Flash_Processor:
 		
 		swf_list=list()
 		i = 0
-		for offs in cws_offset:
-			# print "CWS"
-			if bin[offs:offs+3] == 'CWS':
-				ver = struct.unpack("B", bin[offs+3:offs+4])[0]
-				if ver >=0 and ver <= 30:
-					swf_len = struct.unpack('i', bin[offs+4:offs+8])[0]
-					swf_list.append([bin[offs:offs+swf_len],offs])
-		for offs in fws_offset:
-			# print "FWS"
-			if bin[offs:offs+3] == 'FWS':
-				ver = struct.unpack("B", bin[offs+3:offs+4])[0]
-				if ver >=0 and ver <= 30:					
-					swf_len = struct.unpack('i', bin[offs+4:offs+8])[0]
-					swf_list.append([bin[offs:offs+swf_len],offs])				
+		if cws_offset:
+			for offs in cws_offset:
+				# print "CWS"
+				if bin[offs:offs+3] == 'CWS':
+					ver = struct.unpack("B", bin[offs+3:offs+4])[0]
+					if ver >=0 and ver <= 30:
+						swf_len = struct.unpack('i', bin[offs+4:offs+8])[0]
+						swf_list.append([bin[offs:offs+swf_len],offs])
+		if fws_offset:
+			for offs in fws_offset:
+				# print "FWS"
+				if bin[offs:offs+3] == 'FWS':
+					ver = struct.unpack("B", bin[offs+3:offs+4])[0]
+					if ver >=0 and ver <= 30:					
+						swf_len = struct.unpack('i', bin[offs+4:offs+8])[0]
+						swf_list.append([bin[offs:offs+swf_len],offs])				
 
 		return swf_list
 

@@ -70,6 +70,7 @@ g_f_name      = ''
 def scan(file_path):
     global g_f_name
     g_f_name = os.path.basename(file_path)
+    rlt=None
     try:
         f = open(file_path,'rb')
         mappedfile = f.read()
@@ -80,12 +81,13 @@ def scan(file_path):
         #     print "No shellcode found"
         # else:
         #     print shell_list
+        rlt=omh_shellcode_scan(mappedfile,file_path)
 
     except IOError as err:
         print("I/O Error: {0}".format(err))
     except:
         print("Generic Error Happened\n")
-    return omh_shellcode_scan(mappedfile,file_path)
+    return rlt
 
 
 

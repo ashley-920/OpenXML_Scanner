@@ -22,7 +22,8 @@ class Report_Generator:
         if not sample.bin_file_list == None:
             summary+="Sample Binary List:\n"            
             for bin in sample.bin_file_list:
-                summary+="  *"+bin+"\n"
+                summary+="  *"+bin[0]+"    , MD5="+bin[1]+"     , OLE timestamp="+str(bin[2])+"\n"
+
         
         if not sample.file_contain_flash == None:
             summary+="SWF File Directory:"+sample.swf_dir+"\n"
@@ -40,7 +41,7 @@ class Report_Generator:
                     c+=1        
         if not sample.vba_dir == None:
             summary+="VBA File Path: "+sample.vba_path+"\n"
-            summary+="VBA File Directory: "+sample.VBA_dir+"\n"
+            summary+="VBA File Directory: "+sample.vba_dir+"\n"
 
         if sample.file_contain_pe:              
             if not sample.pe_file_list == None:

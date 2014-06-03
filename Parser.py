@@ -1,6 +1,7 @@
 from Sample import Sample
 from bs4 import BeautifulSoup
 import os,re
+from Utils import Utils
 
 class Parser:
 
@@ -37,10 +38,14 @@ class Parser:
         return sample.file_contain_activeX
 
     def get_bin_list(self,sample):
+        utils=Utils()
         sample.bin_file_list=list()
         for item in sample.file_list:
             if item.endswith(".bin"):
-                sample.bin_file_list.append(item)                 
+                bin_path=os.path.join(sample.extract_file_dir,item)
+                md5=utils.md5_for_file(bin_path)
+                ole_timestamp=utils.get_ole_timestamp(bin_path)                
+                sample.bin_file_list.append([item,md5,ole_timestamp])                 
                 # print "File: ",item
         return sample.bin_file_list
 

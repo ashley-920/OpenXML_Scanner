@@ -10,7 +10,8 @@ class Sample:
 	file_contain_activeX=None  #sample contain ActiveX or not
 	file_contain_flash=None    #sample contain flash object or not
 	file_contain_vba=None      #wether this file contain vba script
-	file_contain_pe=None       #sample contain pe or not	
+	file_contain_pe=None       #sample contain pe or not
+	exploit_20133906=None	   #wether the file is 2013-3906 document
 	vba_path=None              #path of vbaProject.bin
 	bin_file_list=None         #list of all bin file
 	flash_obj_list=None        #list of all flash swf files

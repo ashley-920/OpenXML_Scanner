@@ -2,7 +2,7 @@
 <config>
 	<directory>
 		<output_dir>
-			D:\\tmp2
+			D:\\tmp2\\sample3906
 		</output_dir>
 	</directory>
     <Objects>
@@ -34,25 +34,25 @@
     </Objects>
 	<Scanners>
 		<Scanner name="Flash_scanner">
-			<file status="on">scan_flash.py</file>
+			<file status="off">scan_flash.py</file>
 		</Scanner>
 		<Scanner name="Mal_struc_scanner">
-			<file status="on">struct_scan.py</file>
+			<file status="off">struct_scan.py</file>
 		</Scanner>
 		<Scanner name="PE_scanner">
-			<file status="off">pe_carve.py</file>
+			<file status="on">pe_carve.py</file>
 		</Scanner>
 		<Scanner name="Shellcode_scanner">
 			<file status="off">scan_shell.py</file>
-            <file status="on">shellcode_scanner_modify.py</file>
+            <file status="off">shellcode_scanner_modify.py</file>
             <file status="off">shellcode_scanner2.py</file>
 		</Scanner>
 		<Scanner name="VBA_scanner">
-			<file status="on">scan_vba.py</file>
+			<file status="off">scan_vba.py</file>
 		</Scanner>
 		<Scanner name="URL_scanner">
 			<file status="off">string_scanner.py</file>
-            <file status="on">scan_url.py</file>
+            <file status="off">scan_url.py</file>
 		</Scanner>
 	</Scanners>
 </config>
