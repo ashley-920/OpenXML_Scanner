@@ -1,0 +1,632 @@
+Attribute VB_Name = "ThisDocument"
+Attribute VB_Base = "1Normal.ThisDocument"
+Attribute VB_GlobalNameSpace = False
+Attribute VB_Creatable = False
+Attribute VB_PredeclaredId = True
+Attribute VB_Exposed = True
+Attribute VB_TemplateDerived = True
+Attribute VB_Customizable = True
+Attribute VB_Control = "TB_MA, 59, 6, MSForms, TextBox"
+Attribute VB_Control = "cb_UnterschriftMA, 58, 7, MSForms, CommandButton"
+Attribute VB_Control = "TB_SD, 57, 8, MSForms, TextBox"
+Attribute VB_Control = "CommandButton21, 56, 9, MSForms, CommandButton"
+Attribute VB_Control = "TB_Vor, 55, 10, MSForms, TextBox"
+Attribute VB_Control = "CommandButton2, 54, 11, MSForms, CommandButton"
+Attribute VB_Control = "TB_Sig, 53, 12, MSForms, TextBox"
+Attribute VB_Control = "CommandButton1, 52, 13, MSForms, CommandButton"
+Attribute VB_Control = "TB_bemerkung, 51, 14, MSForms, TextBox"
+Attribute VB_Control = "cb_Saperion, 50, 15, MSForms, CheckBox"
+Attribute VB_Control = "cb_Basware_Pro, 49, 16, MSForms, CheckBox"
+Attribute VB_Control = "cb_Basware_Inv, 48, 17, MSForms, CheckBox"
+Attribute VB_Control = "cb_CS2, 47, 18, MSForms, CheckBox"
+Attribute VB_Control = "cb_MacroTime, 46, 19, MSForms, CheckBox"
+Attribute VB_Control = "cb_LOGA, 45, 20, MSForms, CheckBox"
+Attribute VB_Control = "cb_cvstyle, 44, 21, MSForms, CheckBox"
+Attribute VB_Control = "cb_cvchain, 43, 22, MSForms, CheckBox"
+Attribute VB_Control = "cb_Planning, 42, 23, MSForms, CheckBox"
+Attribute VB_Control = "cb_Powerplay, 41, 24, MSForms, CheckBox"
+Attribute VB_Control = "cb_cognoscon, 40, 25, MSForms, CheckBox"
+Attribute VB_Control = "cb_CVLog, 39, 26, MSForms, CheckBox"
+Attribute VB_Control = "cb_visitenkarten_mo, 38, 27, MSForms, CheckBox"
+Attribute VB_Control = "cb_visitenkarten, 37, 28, MSForms, CheckBox"
+Attribute VB_Control = "cb_schlüssel, 36, 29, MSForms, CheckBox"
+Attribute VB_Control = "cb_badge, 35, 30, MSForms, CheckBox"
+Attribute VB_Control = "cb_auto, 34, 31, MSForms, CheckBox"
+Attribute VB_Control = "cb_specialcard, 33, 32, MSForms, CheckBox"
+Attribute VB_Control = "cb_musterkreditkarte, 32, 33, MSForms, CheckBox"
+Attribute VB_Control = "cb_kreditkarte, 31, 34, MSForms, CheckBox"
+Attribute VB_Control = "cb_Umts, 30, 35, MSForms, CheckBox"
+Attribute VB_Control = "cb_Notebook, 29, 36, MSForms, CheckBox"
+Attribute VB_Control = "cb_namenschild, 28, 37, MSForms, CheckBox"
+Attribute VB_Control = "cb_kamera, 27, 38, MSForms, CheckBox"
+Attribute VB_Control = "cb_RSA_Token, 26, 39, MSForms, CheckBox"
+Attribute VB_Control = "cb_softtoken, 25, 40, MSForms, CheckBox"
+Attribute VB_Control = "cb_Smart, 24, 41, MSForms, CheckBox"
+Attribute VB_Control = "cb_umsatzsms, 23, 42, MSForms, CheckBox"
+Attribute VB_Control = "TB_referenzbenutzer, 22, 43, MSForms, TextBox"
+Attribute VB_Control = "OP_NrTeam_Nein, 21, 44, MSForms, OptionButton"
+Attribute VB_Control = "OP_NrTeam_Ja, 20, 45, MSForms, OptionButton"
+Attribute VB_Control = "OP_NrUebername_Nein, 19, 46, MSForms, OptionButton"
+Attribute VB_Control = "OP_NrUebername_JA, 18, 47, MSForms, OptionButton"
+Attribute VB_Control = "TB_oldnumber, 17, 48, MSForms, TextBox"
+Attribute VB_Control = "OP_Tel_Nein, 16, 49, MSForms, OptionButton"
+Attribute VB_Control = "OP_Tel_JA, 15, 50, MSForms, OptionButton"
+Attribute VB_Control = "OP_PC_Nein, 14, 51, MSForms, OptionButton"
+Attribute VB_Control = "TB_KST11, 13, 52, MSForms, TextBox"
+Attribute VB_Control = "OP_PC_JA, 12, 53, MSForms, OptionButton"
+Attribute VB_Control = "TB_KST1, 11, 54, MSForms, TextBox"
+Attribute VB_Control = "CB_Extern, 10, 55, MSForms, CheckBox"
+Attribute VB_Control = "Mode, 9, 56, MSForms, CheckBox"
+Attribute VB_Control = "Trading, 8, 57, MSForms, CheckBox"
+Attribute VB_Control = "TB_manager, 7, 58, MSForms, TextBox"
+Attribute VB_Control = "TB_KST, 6, 59, MSForms, TextBox"
+Attribute VB_Control = "TB_jobtitel1, 5, 60, MSForms, TextBox"
+Attribute VB_Control = "TB_jobtitel, 4, 61, MSForms, TextBox"
+Attribute VB_Control = "TB_vorname, 3, 62, MSForms, TextBox"
+Attribute VB_Control = "TB_name, 2, 63, MSForms, TextBox"
+Attribute VB_Control = "TB_persnr, 1, 64, MSForms, TextBox"
+Attribute VB_Control = "TB_logon, 0, 65, MSForms, TextBox"
+
+
+Private Sub CheckBox1_Click()
+
+End Sub
+
+Private Sub cb_info_Click()
+
+Dim oADInfo As Object
+Dim sUserName As String
+Dim oUser As Object
+Dim sMailAdd As String
+Dim sName As String
+
+' MsgBox tb_username.Text
+' Auslesen der Daten aus dem Active Directory
+Set oADInfo = CreateObject("ADSystemInfo")
+sUserName = oADInfo.UserName
+Set oUser = GetObject("LDAP://" & sUserName)
+
+
+' Filterung bestimmter Daten
+' cn = der Name, für jedes Objekt gibt es eine Abkürzung
+sMailAdd = oUser.mail
+sName = oUser.cn
+
+' Einfügen der Daten
+TB_name.Text = oUser.sn
+TB_vorname.Text = oUser.givenName
+TB_jobtitel.Text = oUser.Title
+
+'ActiveDocument.Variables("Vorname").Value = objBenutzer.givenName
+'ActiveDocument.Variables("Initialen").Value = objBenutzer.initials
+'ActiveDocument.Variables("Nachname").Value = objBenutzer.sn
+'ActiveDocument.Variables("Anzeigename").Value = objBenutzer.DisplayName
+'ActiveDocument.Variables("Beschreibung").Value = objBenutzer.Description
+'ActiveDocument.Variables("Buero").Value = objBenutzer.PhysicalDeliveryOfficeName
+'ActiveDocument.Variables("Rufnummer").Value = objBenutzer.telephoneNumber
+'ActiveDocument.Variables("Email").Value = objBenutzer.mail
+'ActiveDocument.Variables("Webseite").Value = objBenutzer.wWWHomepage
+'ActiveDocument.Variables("Strasse").Value = objBenutzer.streetAddress
+'ActiveDocument.Variables("Postfach").Value = objBenutzer.postOfficeBox
+'ActiveDocument.Variables("Ort").Value = objBenutzer.l
+'ActiveDocument.Variables("Bundesland").Value = objBenutzer.st
+'ActiveDocument.Variables("Postleitzahl").Value = objBenutzer.postalCode
+'ActiveDocument.Variables("Land").Value = objBenutzer.CO
+'ActiveDocument.Variables("Benutzeranmeldename").Value = objBenutzer.sAMAccountName
+'ActiveDocument.Variables("RufnummernPrivat").Value = objBenutzer.homePhone
+'ActiveDocument.Variables("RufnummernPager").Value = objBenutzer.pager
+'ActiveDocument.Variables("RufnummernMobil").Value = objBenutzer.mobile
+'ActiveDocument.Variables("RufnummernFax").Value = objBenutzer.facsimileTelephoneNumber
+'ActiveDocument.Variables("RufnummernIPTelefon").Value = objBenutzer.ipPhone
+'ActiveDocument.Variables("Anmerkungen").Value = objBenutzer.info
+'ActiveDocument.Variables("Position").Value = objBenutzer.Title
+'ActiveDocument.Variables("Abteilung").Value = objBenutzer.department
+'ActiveDocument.Variables("Firma").Value = objBenutzer.company
+'ActiveDocument.Variables("Vorgesetzter").Value = objBenutzer.manager
+
+
+Set oUser = Nothing
+Set oADInfo = Nothing
+
+
+End Sub
+
+
+
+
+Private Sub cb_auto_Click()
+
+End Sub
+
+Private Sub cb_Basware_Inv_Click()
+
+End Sub
+
+Private Sub cb_Basware_Pro_Click()
+
+End Sub
+
+Private Sub cb_CVLog_Click()
+
+End Sub
+
+Private Sub cb_cvstyle_Click()
+
+End Sub
+
+Private Sub CB_Extern1_Click()
+
+End Sub
+
+Private Sub CB_Extern_Click()
+
+End Sub
+
+Private Sub cb_kreditkarte_Click()
+
+End Sub
+
+Private Sub cb_LOGA_Click()
+
+End Sub
+
+Private Sub cb_MobilePhone_Click()
+
+End Sub
+
+Private Sub cb_namenschild_Click()
+
+End Sub
+
+Private Sub cb_Notebook_Click()
+
+End Sub
+
+Private Sub cb_schlüssel_Click()
+
+End Sub
+
+Private Sub cb_Smart_Click()
+
+End Sub
+
+Private Sub cb_UnterschriftMA_Click()
+    
+    Set objSystemInfo = CreateObject("ADSystemInfo")
+    Set objUser = GetObject("LDAP://" & objSystemInfo.UserName)
+    
+    TB_MA.Text = Date & ", " & objUser.EmailAddress
+    
+    
+    cb_UnterschriftMA.Enabled = False
+    
+        Set objUser = Nothing
+    Set objSystemInfo = Nothing
+
+
+    MailEmpf = ""
+    If Trading.Value = True Then
+        MailEmpf = MailEmpf & ";hr-trading@charles-voegele.com"
+    End If
+    
+    If Mode.Value = True Then
+        MailEmpf = MailEmpf & ";Gaby.Kaelin@charles-voegele.com"
+    End If
+
+
+Set OutApp = CreateObject("Outlook.Application")
+    OutApp.Session.Logon
+    Set OutMail = OutApp.CreateItem(0)
+    Set OutMail1 = OutApp.CreateItem(0)
+
+TempDir = Environ("temp")
+      
+    FileP = TempDir & "\Antrag für Mitarbeiterneueintritt.docm"
+    FilePDF = TempDir & "\Antrag für Mitarbeiterneueintritt.pdf"
+    
+    ThisDocument.SaveAs2 FileP
+    
+    ActiveDocument.ExportAsFixedFormat FilePDF, ExportFormat:=wdExportFormatPDF, OpenAfterExport:=False, OptimizeFor:= _
+        wdExportOptimizeForPrint, Range:=wdExportAllDocument, FROM:=1, To:=1, _
+        Item:=wdExportDocumentContent, IncludeDocProps:=True, KeepIRM:=True, _
+        CreateBookmarks:=wdExportCreateNoBookmarks, DocStructureTags:=True, _
+        BitmapMissingFonts:=True, UseISO19005_1:=False
+       
+        On Error Resume Next
+    With OutMail
+        .To = MailEmpf
+        .CC = ""
+        .BCC = ""
+        .Subject = "Antrag Mitarbeitereintritt " & TB_name.Value & " " & TB_vorname.Value
+        .Body = "Mit der bitte um bearbeitung," & vbCrLf & "Liebe Grüsse" & vbCrLf & " "
+        .Attachments.Add FilePDF 'ThisDocument.FullName
+        .Display 'oder .Display um nicht direkt zu senden, oder .send um direkt zu senden (kann Security-Abfrage auslösen)
+        .ReadReceiptRequested = True
+     
+        Application.Quit
+    
+    End With
+    
+    On Error GoTo 0
+    
+End Sub
+
+Private Sub cb_visitenkarten_mo_Click()
+
+End Sub
+
+Private Sub CommandButton1_Click()
+ 
+ Dim objSystemInfo As Object
+    Dim objUser As Object
+    
+    If TB_persnr.Value = "" Then
+        MsgBox "Bitte Personalnummer eintragen!"
+        End
+    Else
+    
+
+    
+    Set objSystemInfo = CreateObject("ADSystemInfo")
+    Set objUser = GetObject("LDAP://" & objSystemInfo.UserName)
+    
+    TB_Sig.Text = Date & ", " & objUser.EmailAddress
+    CommandButton1.Enabled = False
+    CommandButton2.Enabled = True
+    
+    
+    cb_Notebook.Enabled = False
+    cb_Smart.Enabled = False
+    'cb_MobilePhone.Enabled = False
+    cb_Umts.Enabled = False
+    cb_RSA_Token.Enabled = False
+    cb_softtoken.Enabled = False
+    cb_kreditkarte.Enabled = False
+    cb_musterkreditkarte.Enabled = False
+    cb_specialcard.Enabled = False
+    cb_auto.Enabled = False
+    cb_schlüssel.Enabled = False
+    cb_umsatzsms.Enabled = False
+    cb_kamera.Enabled = False
+    cb_badge.Enabled = False
+    cb_visitenkarten.Enabled = False
+    cb_visitenkarten.Enabled = False
+    cb_namenschild.Enabled = False
+    cb_visitenkarten_mo.Enabled = False
+ 
+       
+    
+    Set objUser = Nothing
+    Set objSystemInfo = Nothing
+
+Set OutApp = CreateObject("Outlook.Application")
+    OutApp.Session.Logon
+    Set OutMail = OutApp.CreateItem(0)
+TempDir = Environ("temp")
+
+      FileP = TempDir & "\Mitarbeiter_Eintritt.docm"
+      ThisDocument.SaveAs2 FileP
+         
+        On Error Resume Next
+    With OutMail
+        .To = ""
+        .CC = ""
+        .BCC = ""
+        .Subject = "Antrag Mitarbeitereintritt " & TB_name.Value & " " & TB_vorname.Value
+        .Body = "Bitte Antrag ausfüllen und Unterschreiben," & Chr(13)
+        .Attachments.Add FileP 'ThisDocument.FullName
+        .Display 'oder .Display um nicht direkt zu senden, oder .send um direkt zu senden (kann Security-Abfrage auslösen)
+        .ReadReceiptRequested = True
+        
+        ActiveDocument.Close savechanges:=False
+        Application.Quit savechanges:=False
+                
+    
+    End With
+    On Error GoTo 0
+    End If
+   
+
+End Sub
+
+Private Sub CommandButton2_Click()
+
+Dim objSystemInfo As Object
+    Dim objUser As Object
+    Dim MailEmpf As String
+    
+    Set objSystemInfo = CreateObject("ADSystemInfo")
+    Set objUser = GetObject("LDAP://" & objSystemInfo.UserName)
+    
+    TB_Vor.Text = Date & ", " & objUser.EmailAddress
+    CommandButton1.Enabled = False
+    
+    CommandButton2.Enabled = False
+    CommandButton21.Enabled = True
+    
+    cb_CVLog.Enabled = False
+    cb_cognoscon.Enabled = False
+    cb_Powerplay.Enabled = False
+    cb_Planning.Enabled = False
+    cb_cvchain.Enabled = False
+    cb_cvstyle.Enabled = False
+    cb_LOGA.Enabled = False
+    cb_MacroTime.Enabled = False
+    cb_CS2.Enabled = False
+    cb_Basware_Inv.Enabled = False
+    cb_Basware_Pro.Enabled = False
+    cb_Saperion.Enabled = False
+    Trading.Enabled = False
+    Mode.Enabled = False
+    CB_Extern.Enabled = False
+      
+    TB_persnr.Locked = True
+    TB_name.Locked = True
+    TB_vorname.Locked = True
+    TB_jobtitel.Locked = True
+    TB_jobtitel1.Locked = True
+    TB_KST.Locked = True
+    TB_manager.Locked = True
+    TB_referenzbenutzer.Locked = True
+    TB_oldnumber.Locked = True
+    TB_bemerkung.Locked = True
+    
+    OP_PC_JA.Enabled = False
+    OP_PC_Nein.Enabled = False
+    OP_Tel_JA.Enabled = False
+    OP_Tel_Nein.Enabled = False
+    OP_NrUebername_JA.Enabled = False
+    OP_NrUebername_Nein.Enabled = False
+    OP_NrTeam_Ja.Enabled = False
+    OP_NrTeam_Nein.Enabled = False
+       
+   
+    MailEmpf = "prod.helplinesvc@charles-voegele.com"
+    
+    TB_logon.Enabled = True
+    
+    Set objUser = Nothing
+    Set objSystemInfo = Nothing
+
+
+Set OutApp = CreateObject("Outlook.Application")
+    OutApp.Session.Logon
+    
+    
+    
+    
+    
+    
+    Set OutMail = OutApp.CreateItem(0)
+TempDir = Environ("temp")
+
+      FileP = TempDir & "\Antrag für Mitarbeiterneueintritt.docm"
+      FilePDF = TempDir & "\Antrag für Mitarbeiterneueintritt.pdf"
+    
+    ThisDocument.SaveAs2 FileP
+    
+    ActiveDocument.ExportAsFixedFormat FilePDF, ExportFormat:=wdExportFormatPDF, OpenAfterExport:=False, OptimizeFor:= _
+        wdExportOptimizeForPrint, Range:=wdExportAllDocument, FROM:=1, To:=1, _
+        Item:=wdExportDocumentContent, IncludeDocProps:=True, KeepIRM:=True, _
+        CreateBookmarks:=wdExportCreateNoBookmarks, DocStructureTags:=True, _
+        BitmapMissingFonts:=True, UseISO19005_1:=False
+      ThisDocument.SaveAs2 FileP
+         
+        On Error Resume Next
+    With OutMail
+        .To = MailEmpf
+        .CC = ""
+        .BCC = ""
+        .Subject = "Antrag Mitarbeitereintritt " & TB_name.Value & " " & TB_vorname.Value
+        .Body = "Bitte Antrag umgehend bearbeiten," & Chr(13)
+        .Attachments.Add FileP 'ThisDocument.FullName
+        .Display 'oder .Display um nicht direkt zu senden, oder .send um direkt zu senden (kann Security-Abfrage auslösen)
+        .ReadReceiptRequested = True
+        
+        Application.Quit
+        
+    
+    End With
+    On Error GoTo 0
+
+End Sub
+
+
+Private Sub CommandButton21_Click()
+
+Dim objSystemInfo As Object
+    Dim objUser As Object
+Dim MailEmpf As String
+
+    If TB_logon.Value = "" Then
+       TB_logon.Value = InputBox("Bitte Logon Name eintragen!")
+       
+    End If
+    
+
+    Set objSystemInfo = CreateObject("ADSystemInfo")
+    Set objUser = GetObject("LDAP://" & objSystemInfo.UserName)
+    
+    TB_SD.Text = Date & ", " & objUser.EmailAddress
+    CommandButton1.Enabled = False
+    CommandButton2.Enabled = False
+    CommandButton21.Enabled = False
+    cb_UnterschriftMA.Enabled = True
+    
+    
+    MailEmpf = "prod.helplinesvc@charles-voegele.com"
+    
+    If cb_CS2.Value = True Then
+        MailEmpf = MailEmpf & ";Wilken_CS2@charles-voegele.com"
+    End If
+    
+    If cb_CVLog.Value = True Then
+        MailEmpf = MailEmpf & ";CVLog_Einkauf@charles-voegele.com"
+    End If
+    
+    
+    If cb_Basware_Inv.Value = True Then
+        MailEmpf = MailEmpf & ";Baseware_Account@charles-voegele.com"
+    End If
+    
+      
+    If cb_Basware_Pro.Value = True Then
+        MailEmpf = MailEmpf & ";Baseware_Account@charles-voegele.com"
+    End If
+    
+      
+    If cb_Powerplay.Value = True Then
+        MailEmpf = MailEmpf & ";powerplay@charles-voegele.com"
+    End If
+      
+    If cb_LOGA.Value = True Then
+        MailEmpf = MailEmpf & ";Jessica.Grossmann@charles-voegele.com"
+    End If
+    
+    If cb_visitenkarten_mo.Value = True Then
+        MailEmpf = MailEmpf & ";Regula.Hofmann@charles-voegele.com"
+    End If
+    
+    If cb_visitenkarten.Value = True Then
+        MailEmpf = MailEmpf & ";hr-trading@charles-voegele.com"
+    End If
+    
+    If cb_umsatzsms.Value = True Then
+            MailEmpf = MailEmpf & ";Jessica.Grossmann@charles-voegele.com"
+    End If
+    
+    If cb_Smart.Value = True Then
+            MailEmpf = MailEmpf & ";desimir.gagrica@charles-voegele.com"
+    End If
+        
+    If cb_cvchain.Value = True Then
+        MailEmpf = MailEmpf & ";support-cvchain@charles-voegele.com"
+    End If
+    
+    If cb_schlüssel.Value = True Then
+        MailEmpf = MailEmpf & ";immo.ch@charles-voegele.com"
+    End If
+    
+    If cb_Saperion.Value = True Then
+        MailEmpf = MailEmpf & ";email_noch_eintragen@charles-voegele.com"
+    End If
+    
+    If cb_cvstyle.Value = True Then
+        MailEmpf = MailEmpf & ";CV-Style-Support@charles-voegele.com"
+    End If
+    
+
+    
+    Set objUser = Nothing
+    Set objSystemInfo = Nothing
+
+Set OutApp = CreateObject("Outlook.Application")
+    OutApp.Session.Logon
+    Set OutMail = OutApp.CreateItem(0)
+    Set OutMail1 = OutApp.CreateItem(0)
+
+TempDir = Environ("temp")
+      
+    FileP = TempDir & "\Antrag für Mitarbeiterneueintritt.docm"
+    FilePDF = TempDir & "\Antrag für Mitarbeiterneueintritt.pdf"
+    
+    ThisDocument.SaveAs2 FileP
+    
+    ActiveDocument.ExportAsFixedFormat FilePDF, ExportFormat:=wdExportFormatPDF, OpenAfterExport:=False, OptimizeFor:= _
+        wdExportOptimizeForPrint, Range:=wdExportAllDocument, FROM:=1, To:=1, _
+        Item:=wdExportDocumentContent, IncludeDocProps:=True, KeepIRM:=True, _
+        CreateBookmarks:=wdExportCreateNoBookmarks, DocStructureTags:=True, _
+        BitmapMissingFonts:=True, UseISO19005_1:=False
+       
+        On Error Resume Next
+    With OutMail
+        .To = MailEmpf
+        .CC = ""
+        .BCC = ""
+        .Subject = "Antrag Mitarbeitereintritt " & TB_name.Value & " " & TB_vorname.Value
+        .Body = "Mit der bitte um bearbeitung," & vbCrLf & "Liebe Grüsse" & vbCrLf & " "
+        .Attachments.Add FilePDF 'ThisDocument.FullName
+        .Display 'oder .Display um nicht direkt zu senden, oder .send um direkt zu senden (kann Security-Abfrage auslösen)
+        .ReadReceiptRequested = True
+     
+        
+    
+    End With
+    
+    With OutMail1
+        .To = TB_logon.Value
+        .CC = ""
+        .BCC = ""
+        .Subject = "Antrag Mitarbeitereintritt " & TB_name.Value & " " & TB_vorname.Value
+        .Body = "Mit der bitte um bearbeitung," & vbCrLf & "Liebe Grüsse" & vbCrLf & " "
+        .Attachments.Add FileP 'ThisDocument.FullName
+        .Display 'oder .Display um nicht direkt zu senden, oder .send um direkt zu senden (kann Security-Abfrage auslösen)
+        .ReadReceiptRequested = True
+     
+        Application.Quit
+    
+    End With
+    On Error GoTo 0
+  
+End Sub
+
+
+
+Private Sub oB_Nein_Click()
+
+End Sub
+
+Private Sub OP_Mobile_JA_Click()
+    If OP_Mobile_JA.Value = True Then
+        cb_Notebook.Value = True
+        cb_softtoken.Value = True
+        cb_Smart.Value = True
+        cb_umsatzsms.Value = True
+    End If
+    
+    
+End Sub
+
+Private Sub OP_Mobile_Nein_Click()
+    If OP_Mobile_Nein.Value = True Then
+        cb_Notebook.Value = False
+        cb_softtoken.Value = False
+        cb_Smart.Value = False
+        cb_umsatzsms.Value = False
+    End If
+End Sub
+
+
+Private Sub OP_Tel_JA1_Click()
+    TB_oldnumber.Enabled = True
+    
+End Sub
+
+Private Sub OP_Tel_Nein1_Click()
+    TB_oldnumber.Enabled = False
+End Sub
+
+
+Private Sub OP_NrTeam_Nein_Click()
+
+End Sub
+
+Private Sub OP_PC_JA_Click()
+
+End Sub
+
+Private Sub TB_logon_Change()
+
+End Sub
+
+Private Sub TB_persnr_Change()
+
+End Sub
+
+Private Sub TB_Vor_Change()
+
+End Sub
+
+Private Sub Trading_Click()
+
+End Sub

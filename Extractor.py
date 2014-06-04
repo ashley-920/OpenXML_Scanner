@@ -31,12 +31,9 @@ class Extractor:
                 if os.path.exists(copy_dir):
                     print "dir exist"
                     for file in os.listdir(copy_dir):
-                        print file
                         file_name=file
                         src_path=os.path.join(copy_dir,file)
                         dst_path=sample.vba_dir+"\\"+file
-                        print src_path
-                        print dst_path
                         self.utils.copy_and_remove_file(src_path,dst_path)
 
 
@@ -66,7 +63,6 @@ class Extractor:
         utils=Utils()
         prog_path=os.path.dirname(__file__)+"\\Modules\\OfficeMalScanner\\OfficeMalScanner.exe"
         command="\""+prog_path+"\" \""+bin_file_path+"\" info"
-        print command
         try:
             self.utils.run_command(prog_path,command)
         except Exception,e:

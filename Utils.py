@@ -30,8 +30,9 @@ class Utils:
         # lock=thread.allocate_lock()
         # thread.start_new_thread(self.do_command,(prog_path,command,lock))
         print "running command:"
-        print command
-        sub.Popen(command,shell=True, stdout=sub.PIPE, stderr=sub.STDOUT)
+        command += " >nul"
+        # sub.Popen(command,shell=False, stdout=sub.PIPE, stderr=sub.STDOUT)
+        sub.call(command, shell=True)
         
 
     def do_command(self,prog_path,command,lock):
