@@ -29,8 +29,9 @@ def process_sample(file_path):
             parser.parse(sample)
             extrator.extract(sample)
             # config.print_info()      
-            # operator.operate(sample,config)
-            # r_generator.write_report(sample)   
+            operator.operate(sample,config)
+            r_generator.write_report(sample)  
+            ######for getting 3906 timestamp######## 
             # try:         
             #     for bin in sample.bin_file_list:
             #         bin_path=os.path.join(sample.extract_file_dir,bin[0])                
@@ -41,7 +42,7 @@ def process_sample(file_path):
             # except Exception, e:
             #     print "Error when getting timestamp"
                 
-    return bin_time_list
+    # return bin_time_list
 
     
 
@@ -71,10 +72,11 @@ def run(file_path):
         total_time_list=list()
         print len(dir_files_list)
         for files in dir_files_list:    
-            bin_time_list=process_sample(os.path.join(file_path, files))
-            total_time_list=deduplicate(total_time_list,bin_time_list)            
-        print "Total time template:"
-        print total_time_list
+            process_sample(os.path.join(file_path, files))
+            # bin_time_list=process_sample(os.path.join(file_path, files))
+            # total_time_list=deduplicate(total_time_list,bin_time_list)            
+        # print "Total time template:"
+        # print total_time_list
         
         # f=open("C:\Users\Ash\Desktop\python\openXML_scanner\cve_2013_3906_binary_timestamp.txt",'wb')
         # for time in total_time_list:

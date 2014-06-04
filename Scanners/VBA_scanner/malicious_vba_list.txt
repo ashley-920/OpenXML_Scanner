@@ -1,0 +1,9 @@
+WinHttp.WinHttpRequest
+ADODB.Stream
+Microsoft.XMLHTTP
+Win32API
+URLDownloadToFile
+charles-voegele.com
+Outlook.Application
+ADSystemInfo
+WScript.Shell

@@ -11,6 +11,7 @@ class Report_Generator:
         summary+="Sample Extract File Directory:"+sample.extract_file_dir+"\n"
         summary+="Sample File Type:"+sample.file_type+"\n"
         summary+="Sample File List:\n"
+
         c=0
         for file in sample.file_list:
             summary+="  ["+str(c)+"]"+file+"\n"
@@ -22,7 +23,7 @@ class Report_Generator:
         if not sample.bin_file_list == None:
             summary+="Sample Binary List:\n"            
             for bin in sample.bin_file_list:
-                summary+="  *"+bin[0]+"    , MD5="+bin[1]+"     , OLE timestamp="+str(bin[2])+"\n"
+                summary+="  *"+bin[0]+"   , MD5="+bin[1]+"   , OLE timestamp="+str(bin[2])+"\n"
 
         
         if not sample.file_contain_flash == None:
@@ -54,7 +55,10 @@ class Report_Generator:
 
 
 
-        summary+="\nIOM of this sample:"+str(sample.IOM)+"\n\n"
+        summary+="\nIOM of this sample:"+str(sample.IOM)+"\n"
+        summary+="\nHighlight:\n"
+        if sample.exploit_20133906:
+            summary+="\n* Sample Contain CVE 2013-3906 exploit\n\n"
         summary+="#######################################################\n"
         summary+="Report Detail:\n"
 

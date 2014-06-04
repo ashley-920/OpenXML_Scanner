@@ -416,7 +416,7 @@ def OLE_Parser(path):
 				low = int(struct.unpack("L", modifyTime[4:8])[0])
 				ft = LONG_INTEGER(low & 0xFFFFFFFFL, high >>32)
 				# print binascii.hexlify(modifyTime[0:8])
-				print "%s,%s" % (Print_TimeDateStamp(ft), path)
+				# print "%s,%s" % (Print_TimeDateStamp(ft), path)
 
 
 

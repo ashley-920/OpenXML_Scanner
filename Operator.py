@@ -22,7 +22,7 @@ class Operator:
     def operate(self,sample, config):
         utils=Utils()
         import_file_dir="Scanners"
-        md5_list=list()
+        
         if self.objects_dict != None and self.scanners_dict != None:
 
             # deal with activeX obj
@@ -32,24 +32,34 @@ class Operator:
                 # print "Contain activeX"
                 scanners=self.objects_dict.get("activex")
                 for scanner in scanners:
-                    sample.report+="\n\n***"+scanner+"***\n\n"
+                    md5_list=list()
+                    sample.report+="\n\n************************"+scanner+"*****************************\n\n"
                     # print scanner
                     files=self.scanners_dict.get(scanner)
                     for file in files:
                         file= os.path.splitext(file)[0]
                         import_path= "%s.%s.%s" % (import_file_dir,scanner,file)
-                        # print "import "+import_path
+                        print "import "+import_path
                         module=self.import_files(import_path)
                         for bin in sample.bin_file_list:
-                            obs_bin_path=os.path.join(sample.extract_file_dir,bin[0])
-                            sample.report+="File: "+obs_bin_path+"\n"                            
-                            sample.report+="MD5: "+bin[1]+"\n"
+                            if sample.exploit_20133906:
+                                sample.report+="\n==========Skip Scanning since CVE 2013-3906 detected==========\n"
+                                break
+                            obs_bin_path=os.path.join(sample.extract_file_dir,bin[0])  
+                            print "Path: "+obs_bin_path                          
                             if bin[1] not in md5_list:
+                                print "not in md5 list"
+                                sample.report+="\nFile: "+obs_bin_path+"\n"                            
+                                sample.report+="\nMD5: "+bin[1]+"\n"
                                 md5_list.append(bin[1])
                                 rlt=self.scan_file(module, obs_bin_path)
                                 if not rlt == None:
+                                    if "CVE 2013-3906" in rlt.get_report():
+                                        sample.exploit_20133906=True
                                     sample.IOM+=rlt.get_IOM()
                                     sample.report=sample.report+rlt.get_report()
+                                    sample.report=sample.report+"\n--------------------------------------------------------------\n"
+
 
                             
                             
@@ -120,7 +130,7 @@ class Operator:
             if sample.file_contain_pe:
                 print "file_contain_pe"
                 print sample.pe_file_list
-                sample.IOM+=100
+                sample.IOM+=200
 
         print "IOM of This Sample:",sample.IOM
         print "Report of This Sample:",sample.report

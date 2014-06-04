@@ -40,11 +40,15 @@ class Parser:
     def get_bin_list(self,sample):
         utils=Utils()
         sample.bin_file_list=list()
+        ole_timestamp=None
         for item in sample.file_list:
             if item.endswith(".bin"):
                 bin_path=os.path.join(sample.extract_file_dir,item)
                 md5=utils.md5_for_file(bin_path)
-                ole_timestamp=utils.get_ole_timestamp(bin_path)                
+                try:
+                    ole_timestamp=utils.get_ole_timestamp(bin_path)
+                except Exception, e:
+                    print "Error when getting OLE timestamp:"+str(e)                
                 sample.bin_file_list.append([item,md5,ole_timestamp])                 
                 # print "File: ",item
         return sample.bin_file_list

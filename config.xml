@@ -2,12 +2,13 @@
 <config>
 	<directory>
 		<output_dir>
-			D:\\tmp2\\sample3906
+			D:\\tmp2\\sampleVBA
 		</output_dir>
 	</directory>
     <Objects>
         <ActiveX>
             <Scan>
+                <Module>Mal_struc_scanner</Module>  
                 <Module>Shellcode_scanner</Module>                                
             </Scan>
         </ActiveX>
@@ -37,10 +38,10 @@
 			<file status="off">scan_flash.py</file>
 		</Scanner>
 		<Scanner name="Mal_struc_scanner">
-			<file status="off">struct_scan.py</file>
+			<file status="off">scan_cve_2013_3906.py</file>
 		</Scanner>
 		<Scanner name="PE_scanner">
-			<file status="on">pe_carve.py</file>
+			<file status="off">pe_carve.py</file>
 		</Scanner>
 		<Scanner name="Shellcode_scanner">
 			<file status="off">scan_shell.py</file>
@@ -48,7 +49,7 @@
             <file status="off">shellcode_scanner2.py</file>
 		</Scanner>
 		<Scanner name="VBA_scanner">
-			<file status="off">scan_vba.py</file>
+			<file status="on">scan_vba.py</file>
 		</Scanner>
 		<Scanner name="URL_scanner">
 			<file status="off">string_scanner.py</file>
