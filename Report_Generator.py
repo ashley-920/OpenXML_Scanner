@@ -27,7 +27,7 @@ class Report_Generator:
 
         
         if not sample.file_contain_flash == None:
-            summary+="SWF File Directory:"+sample.swf_dir+"\n"
+            summary+="SWF File Directory:"+str(sample.swf_dir)+"\n"
             if not sample.flash_obj_list == None:
                 summary+="Flash Object Number:"+str(len(sample.flash_obj_list))+"\n"
                 c=0

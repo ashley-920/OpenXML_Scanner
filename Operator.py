@@ -71,7 +71,8 @@ class Operator:
                 scanners=self.objects_dict.get("action_script")
                 print self.objects_dict
                 for scanner in scanners:
-                    print scanner
+                    sample.report+="\n\n************************"+scanner+"*****************************\n\n"
+                    # print scanner
                     files=self.scanners_dict.get(scanner)
                     for file in files:
                         file= os.path.splitext(file)[0]
@@ -91,7 +92,8 @@ class Operator:
                 scanners=self.objects_dict.get("vba_script")
                 # print self.objects_dict
                 for scanner in scanners:
-                    print scanner
+                    sample.report+="\n\n************************"+scanner+"*****************************\n\n"
+                    # print scanner
                     files=self.scanners_dict.get(scanner)
                     for file in files:
                         file= os.path.splitext(file)[0]
@@ -111,7 +113,8 @@ class Operator:
                 # print "Scan xml file"
                 scanners=self.objects_dict.get("xml")
                 for scanner in scanners:
-                    print scanner
+                    sample.report+="\n\n************************"+scanner+"*****************************\n\n"
+                    # print scanner
                     files=self.scanners_dict.get(scanner)
                     for file in files:
                         file= os.path.splitext(file)[0]
