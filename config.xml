@@ -2,7 +2,7 @@
 <config>
 	<directory>
 		<output_dir>
-			D:\\tmp2\\sampleVBA
+			D:\\tmp2
 		</output_dir>
 	</directory>
     <Objects>
@@ -38,7 +38,7 @@
 			<file status="off">scan_flash.py</file>
 		</Scanner>
 		<Scanner name="Mal_struc_scanner">
-			<file status="off">scan_cve_2013_3906.py</file>
+			<file status="on">scan_cve_2013_3906.py</file>
 		</Scanner>
 		<Scanner name="Shellcode_scanner">
 			<file status="off">scan_shell.py</file>
@@ -46,11 +46,11 @@
             <file status="off">shellcode_scanner2.py</file>
 		</Scanner>
 		<Scanner name="VBA_scanner">
-			<file status="on">scan_vba.py</file>
+			<file status="off">scan_vba.py</file>
 		</Scanner>
 		<Scanner name="URL_scanner">
 			<file status="off">string_scanner.py</file>
-            <file status="on">scan_url.py</file>
+            <file status="off">scan_url.py</file>
 		</Scanner>
 	</Scanners>
 </config>

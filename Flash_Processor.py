@@ -6,7 +6,7 @@ import sys,re,os,subprocess as sub
 class Flash_Processor:
 
 	swftool_dir= "\\Modules\\swftools\\swfdump.exe"
-
+	flare_dir= "\\Modules\\flare\\flare.exe"
 	def process(self,sample):		
 		sample.swf_dir=os.path.join(sample.sample_dir,"SWF_files")
 		if not os.path.exists(sample.swf_dir):
@@ -22,11 +22,12 @@ class Flash_Processor:
 				flash_obj.file_size=len(swf[0])
 				flash_obj.swf_type=swf[0][0:3]
 				bin_name=os.path.basename(bin_path)				
-				flash_obj.file_name = "[%s]_%s_%s_%08X" % (sample.file_name,bin_name, flash_obj.swf_type, swf[1])
+				flash_obj.file_name = "[%s]_%s_%s_%08X.swf" % (sample.file_name,bin_name, flash_obj.swf_type, swf[1])
 				flash_obj.file_path=os.path.join(sample.swf_dir,flash_obj.file_name)
 				self.write_to_swf(swf[0],flash_obj.file_path)
 				flash_obj.as_file_name=flash_obj.file_name+".txt"
 				flash_obj.as_file_path=os.path.join(sample.swf_dir,flash_obj.as_file_name)
+				print "extract actionscript"
 				self.extract_actionscript(flash_obj.file_path,flash_obj.as_file_path)				
 				sample.flash_obj_list.append(flash_obj)
 
@@ -78,20 +79,22 @@ class Flash_Processor:
 		return swf_list
 
 	def write_to_swf(self,swf,file_path):
-		file_path=file_path+".swf"
+		file_path=file_path
 		f = open(file_path, 'wb')
 		f.write(swf)
 		f.close()
 
 
 	def extract_actionscript(self,file_path,des_text_path):		
-		prog_swftools = os.path.dirname(__file__)+self.swftool_dir		
-		test_command="\""+prog_swftools+"\" -a \""+file_path+"\" > \""+des_text_path+"\""
-		# print test_command
-		# print 'ActionScript file location:'
-		# print  '*%s' % (des_text_path)
+		prog_swftools = os.path.dirname(__file__)+self.swftool_dir
+		prog_flare = os.path.dirname(__file__)+self.flare_dir		
+		
+		test_command="\""+prog_flare+"\" \""+file_path+"\""
 		sub.Popen(test_command,shell=True, stdout=sub.PIPE, stderr=sub.STDOUT)
 
+		test_command="\""+prog_swftools+"\" -a \""+file_path+"\" > \""+des_text_path+"\""
+		print test_command
+		sub.Popen(test_command,shell=True, stdout=sub.PIPE, stderr=sub.STDOUT)
 
 if __name__ == '__main__':  # pragma: no cover
 	if len(sys.argv)>1:

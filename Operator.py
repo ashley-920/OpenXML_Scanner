@@ -133,7 +133,7 @@ class Operator:
             if sample.file_contain_pe:
                 print "file_contain_pe"
                 print sample.pe_file_list
-                sample.IOM+=200
+                sample.IOM+=len(sample.pe_file_list)*200
 
         print "IOM of This Sample:",sample.IOM
         print "Report of This Sample:",sample.report

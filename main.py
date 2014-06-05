@@ -31,6 +31,9 @@ def process_sample(file_path):
             # config.print_info()      
             operator.operate(sample,config)
             r_generator.write_report(sample)  
+
+    return sample        
+
             ######for getting 3906 timestamp######## 
             # try:         
             #     for bin in sample.bin_file_list:
@@ -68,11 +71,13 @@ def deduplicate(uni_list,_list):
 
 def run(file_path):
     if os.path.isdir(file_path):
+        result_list=list()
         dir_files_list=os.listdir(file_path)
         total_time_list=list()
         print len(dir_files_list)
         for files in dir_files_list:    
-            process_sample(os.path.join(file_path, files))
+            sample=process_sample(os.path.join(file_path, files))
+            result_list.append([sample.file_name,sample.IOM])
             # bin_time_list=process_sample(os.path.join(file_path, files))
             # total_time_list=deduplicate(total_time_list,bin_time_list)            
         # print "Total time template:"
@@ -83,6 +88,11 @@ def run(file_path):
         #     f.write(time)
         #     f.write("\n")
         # f.close()
+
+        for rlt in result_list:
+            print rlt[0]
+            print rlt[1]
+
 
 
     else:
