@@ -2,14 +2,15 @@
 <config>
 	<directory>
 		<output_dir>
-			D:\\tmp2
+			D:\\tmp2\\sample5054
 		</output_dir>
 	</directory>
     <Objects>
         <ActiveX>
             <Scan>
                 <Module>Mal_struc_scanner</Module>  
-                <Module>Shellcode_scanner</Module>                                
+                <Module>Shellcode_scanner</Module>  
+                <Module>URL_scanner</Module>                              
             </Scan>
         </ActiveX>
         <VBA_Script>
@@ -42,15 +43,15 @@
 		</Scanner>
 		<Scanner name="Shellcode_scanner">
 			<file status="off">scan_shell.py</file>
-            <file status="off">shellcode_scanner_modify.py</file>
+            <file status="on">shellcode_scanner_modify.py</file>
             <file status="off">shellcode_scanner2.py</file>
 		</Scanner>
 		<Scanner name="VBA_scanner">
-			<file status="off">scan_vba.py</file>
+			<file status="on">scan_vba.py</file>
 		</Scanner>
 		<Scanner name="URL_scanner">
 			<file status="off">string_scanner.py</file>
-            <file status="off">scan_url.py</file>
+            <file status="on">scan_url.py</file>
 		</Scanner>
 	</Scanners>
 </config>

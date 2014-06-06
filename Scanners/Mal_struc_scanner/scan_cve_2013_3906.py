@@ -13,7 +13,7 @@ def scan(file_path):
     except Exception, e:
         print "Error when getting OLE timestamp:"+str(e)     
     if time == timestamp_3906:
-        iom=200
+        iom=500
         report="\nTimestamp of this binary match CVE 2013-3906 template\n"
     ot.set_item(iom,report)
     return ot

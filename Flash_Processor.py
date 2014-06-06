@@ -7,6 +7,8 @@ class Flash_Processor:
 
 	swftool_dir= "\\Modules\\swftools\\swfdump.exe"
 	flare_dir= "\\Modules\\flare\\flare.exe"
+	ffdec_dir="\\Modules\\ffdec\\ffdec.jar"
+
 	def process(self,sample):		
 		sample.swf_dir=os.path.join(sample.sample_dir,"SWF_files")
 		if not os.path.exists(sample.swf_dir):
@@ -26,7 +28,7 @@ class Flash_Processor:
 				flash_obj.file_path=os.path.join(sample.swf_dir,flash_obj.file_name)
 				self.write_to_swf(swf[0],flash_obj.file_path)
 				flash_obj.as_file_name=flash_obj.file_name+".txt"
-				flash_obj.as_file_path=os.path.join(sample.swf_dir,flash_obj.as_file_name)
+				flash_obj.as_file_path=os.path.join(sample.swf_dir,"script")
 				print "extract actionscript"
 				self.extract_actionscript(flash_obj.file_path,flash_obj.as_file_path)				
 				sample.flash_obj_list.append(flash_obj)
@@ -87,12 +89,17 @@ class Flash_Processor:
 
 	def extract_actionscript(self,file_path,des_text_path):		
 		prog_swftools = os.path.dirname(__file__)+self.swftool_dir
-		prog_flare = os.path.dirname(__file__)+self.flare_dir		
+		prog_flare = os.path.dirname(__file__)+self.flare_dir	
+		prog_ffdec=os.path.dirname(__file__)+self.ffdec_dir	
 		
-		test_command="\""+prog_flare+"\" \""+file_path+"\""
-		sub.Popen(test_command,shell=True, stdout=sub.PIPE, stderr=sub.STDOUT)
+		# test_command="\""+prog_flare+"\" \""+file_path+"\""
+		# sub.Popen(test_command,shell=True, stdout=sub.PIPE, stderr=sub.STDOUT)
 
-		test_command="\""+prog_swftools+"\" -a \""+file_path+"\" > \""+des_text_path+"\""
+		# test_command="\""+prog_swftools+"\" -a \""+file_path+"\" > \""+des_text_path+"\""
+		# print test_command
+		# sub.Popen(test_command,shell=True, stdout=sub.PIPE, stderr=sub.STDOUT)
+
+		test_command="java -jar \""+prog_ffdec+"\" -export script \""+des_text_path+"\" \""+file_path+"\""
 		print test_command
 		sub.Popen(test_command,shell=True, stdout=sub.PIPE, stderr=sub.STDOUT)
 

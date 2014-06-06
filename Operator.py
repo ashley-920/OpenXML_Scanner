@@ -42,7 +42,7 @@ class Operator:
                         print "import "+import_path
                         module=self.import_files(import_path)
                         for bin in sample.bin_file_list:
-                            if sample.exploit_20133906:
+                            if sample.exploit_20133906 and scanner == "Shellcode_scanner":
                                 sample.report+="\n==========Skip Scanning since CVE 2013-3906 detected==========\n"
                                 break
                             obs_bin_path=os.path.join(sample.extract_file_dir,bin[0])  
